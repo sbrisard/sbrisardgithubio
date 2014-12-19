@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Green operator for strains, part 1: definition</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">The Green operator for strains, part 1: definition</h1>
+<p>
+Micromechanics aims at computing the macroscopic properties of heterogeneous materials. In other words, we are looking for a <i>stress-strain</i> relationship, and displacements are of but little use to us. We therefore tend to prefer Green operators for <i>strains</i> to Green operators for <i>displacements</i>, which are commonly used in the mathematical theory of elasticity.  The Green operator for strain is the essential ingredient for my main research topic, namely polarization techniques. In the first instalment of this series, I'm going to define the Green operator for strains.<!-- more -->
+</p>
+
+<p>
+We consider a <i>homogeneous</i> material occupying the bounded domain \(\domain\subset\reals^d\) ($d=2,3$). \(\stiffness_0\) denotes the elastic moduli of this material. In order to be able to define a Green operator, we need to specify an elementary loading. If we were to define the standard Green operator for displacements, we would consider a <i>point load</i> as elementary load-case. For reasons that will become clearer later, it is more appropriate to consider here a point <i>prestress</i>. Keeping this in mind, we introduce a local prestress \(\prestress\), which can be heterogeneous. This prestress will define the <i>loading</i>. Finally, in order to ensure well-posedness, <i>boundary conditions</i> must be specified; we consider here fixed boundary conditions. The elasticity problem at hand then reads
+</p>
+
+\begin{align}
+    \label{eq:1}
+    \nabla_\vec x\cdot\stress&=\vec{0} && (\vec x\in\domain),\\
+    \label{eq:2}
+    \stress(\vec x)&=\stiffness_0:\strain(\vec x)+\prestress(\vec x) && (\vec x\in\domain),\\
+    \label{eq:3}
+    \strain(\vec x)&=\nabla_\vec x^\text{s}\displ && (\vec x\in\domain),\\
+    \label{eq:4}
+    \displ(\vec x)&=\vec 0 && (\vec x\in\partial\domain).
+\end{align}
+
+<p>
+Eq. \eqref{eq:1} expresses static equilibrium (\(\stress\): local stress tensor); Eq. \eqref{eq:2} is the constitutive law of the homogeneous, prestressed material (\(\strain\): local strain tensor). Eq. \eqref{eq:3} expresses the fact that \(\strain\) is <i>geometrically compatible</i>: it is the symmetric part of the gradient of the displacement \(\displ\). Finally, Eq. \eqref{eq:4} specifies the boundary conditions.
+</p>
+
+<p>
+So, this is the problem we would like to solve. From the mathematical theory of elasticity, we <i>know</i> that it has a <i>unique</i> solution \(\displ\). Again, displacements are not that interesting from the perspective of micromechanics; what we really want to determine is the local strain \(\strain\). In order to express the solution to Eqs. \eqref{eq:1} – \eqref{eq:4} in a convenient form, it is essential to note that it is linear. The superposition theorem will therefore be invoked. As a first step, we assume that the prestress \(\prestress\) has the simple following form
+</p>
+
+\begin{equation}
+\label{eq:5}
+\prestress(\vec x) = \delta(\vec x-\vec y)\Prestress,
+\end{equation}
+
+<p>
+where \(\vec y\in\domain\) is a fixed point, \(\delta\) is the Dirac function, and \(\Prestress\) is a constant tensor. Because of linearity of Eqs. \eqref{eq:1} – \eqref{eq:4}, the strain \(\strain(\vec x)\) at point \(\vec x\in\domain\) depends linearly on the only loading parameter, \(\Prestress\). By definition, the linear operator mapping \(\Prestress\) onto \(\strain(\vec x)\) will be called the <i>Green operator for strains</i>, and denoted \(\greeniv_0\). Of course, this operator depends on the <i>observation</i> point \(\vec x\); it also depends on the <i>source</i> point \(\vec y\) [where the point prestress \eqref{eq:5} is actually applied]. In other words
+</p>
+
+\begin{equation}
+\label{eq:6}
+\strain(\vec x)=-\greeniv_0(\vec x, \vec y):\Prestress,
+\end{equation}
+
+<p>
+where it should be noted that there is a minus '\(-\)' sign in the above equation. This definition (including the '\(-\)') is actually more convenient. In the more general case, the now arbitrary local prestress \(\prestress\) can always be seen as the superposition of elementary loadcases of type \eqref{eq:5}, since
+</p>
+
+\begin{equation*}
+\prestress(\vec x)=\int_{\vec y\in\domain}\delta(\vec x-\vec y)\prestress(\vec y)\dV{\vec y}.
+\end{equation*}
+
+<p>
+Application of the superposition theorem allows us to recover the general expression of the solution from Eq. \eqref{eq:6}
+</p>
+
+\begin{equation*}
+\strain(\vec x) = -\int_{\vec y\in\domain}\greeniv_0(\vec x, \vec y):\prestress(\vec y)\dV{\vec y}.
+\end{equation*}
+
+<p>
+The integral in the right-hand side is a kind of modified convolution product, which will be denoted '\(\circledast\)'
+</p>
+
+\begin{equation*}
+\left(\greeniv_0\circledast\prestress\right)(\vec x) = \int_{\vec y\in\domain}\greeniv_0(\vec x, \vec y):\prestress(\vec y)\dV{\vec y},
+\end{equation*}
+
+<p>
+and the solution to Eqs. \eqref{eq:1} – \eqref{eq:4} reads
+</p>
+
+\begin{equation*}
+\strain(\vec x) = -\left(\greeniv_0\circledast\prestress\right)(\vec x).
+\end{equation*}
+
+<p>
+To close this post, let us consider more general boundary conditions. Instead of Eq. \eqref{eq:4}, we now consider Eq. \eqref{eq:7}
+</p>
+
+\begin{align}
+\label{eq:7}
+\displ(\vec x)&=\Strain\cdot\vec x && (\vec x\in\partial\domain),
+\end{align}
+
+<p>
+where \(\Strain\) is the imposed macroscopic strain (more on this in posts to come). Quite obviously, the solution to Eqs. \eqref{eq:1}, \eqref{eq:2}, \eqref{eq:3} and \eqref{eq:7} reads
+</p>
+
+\begin{equation}
+\label{eq:8}
+\strain(\vec x) = \Strain-\left(\greeniv_0\circledast\prestress\right)(\vec x).
+\end{equation}
+
+<p>
+Formula \eqref{eq:8} will be extensively used in subsequent posts, since it leads to the <i>Lippmann-Schwinger</i> equation.
+</p>
+
+<p>
+In this instalment, I considered the problem of elastic equilibrium of a homogeneous, prestressed material. The solution to this problem is cast in the form of the "convolution product" of the so-called Green operator for strains, and the imposed local prestress. In the next instalments of this series, I will discuss some properties of the thus-defined Green operator.
+</p>
+
+<p>
+Follow <a href="./20110911-The_Green_operator_for_strains-02.html">this link</a> to go to part 2 of this series.
+</p>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

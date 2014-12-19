@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Some gruesome details</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Some gruesome details</h1>
+<p>
+Formulas on this website are typeset in \(\LaTeX\) and rendered with <a href="http://www.mathjax.org/">MathJax</a>. Activating this feature is very simple. The first thing you need to do is<!-- more --> edit the model of your blog, and insert in the header the following lines
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>='http://cdn.mathjax.org/mathjax/latest/MathJax.js' <span class="org-variable-name">type</span>='text/javascript'&gt;
+  MathJax.Hub.Config({
+  extensions: [<span class="org-string">"tex2jax.js"</span>, <span class="org-string">"TeX/AmsMath.js"</span>, <span class="org-string">"TeX/AMSsymbols.js"</span>],
+  jax: [<span class="org-string">"input/TeX"</span>, <span class="org-string">"output/HTML-CSS"</span>],
+  tex2jax: {inlineMath: [['$','$']],
+  displayMath: [['$$','$$']],
+  processEscapes: true,},
+  <span class="org-string">"HTML-CSS"</span>: {availableFonts: [<span class="org-string">"TeX"</span>]}});
+&lt;/<span class="org-function-name">script</span>&gt;
+</pre>
+</div>
+
+<p>
+Et voilà! Then, typing <code>$$(a+b)^2 = a^2+2ab+b^2$$</code> produces the desired result
+</p>
+
+<p>
+$$(a+b)^2=a^2+2ab+b^2$$
+</p>
+
+<p>
+As for inline math <code>$(a+b)^2 = a^2+2ab+b^2$</code> renders to \((a+b)^2 = a^2+2ab+b^2\).
+</p>
+
+<p>
+NOTA: MathJax can also render MathML. You can even mix MathML and \(\LaTeX\) in the same webpage! To render MathML as well, you just need to paste the following lines to some place in the <code>&lt;header&gt;...&lt;/include/header&gt;</code> section of your webpage
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">script</span> <span class="org-variable-name">src</span>='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' <span class="org-variable-name">type</span>='text/javascript'&gt;
+&lt;/<span class="org-function-name">script</span>&gt;
+</pre>
+</div>
+
+<p>
+and you’re done! MathML blocks must be enclosed in a script
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">script</span> <span class="org-variable-name">type</span>='math/mml'&gt;
+  &lt;<span class="org-function-name">math</span> <span class="org-variable-name">xmlns</span>='http://www.w3.org/1998/Math/MathML'&gt;
+    ...
+  &lt;/<span class="org-function-name">math</span>&gt;
+&lt;/<span class="org-function-name">script</span>&gt;
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

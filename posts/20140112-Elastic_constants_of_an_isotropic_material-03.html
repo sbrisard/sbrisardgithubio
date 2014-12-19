@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elastic constants of an isotropic material, part 3: putting it all together</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Elastic constants of an isotropic material, part 3: putting it all together</h1>
+<p>
+In the previous instalments of this series (see <a href="./20131205-Elastic_constants_of_an_isotropic_material-01.html">Part 1</a> and <a href="./20131229-Elastic_constants_of_an_isotropic_material-02.html">Part 2</a>, I have shown that regardless of the dimensionality (3D or plane strain elasticity), the constitutive law of an isotropically elastic material reads
+</p>
+
+\begin{equation}
+\label{eq:1}
+\stresscomp_{ij}=\bulkmod\straincomp_{kk}\delta_{ij}+2\shearmod\left(\straincomp_{ij}-\frac{\straincomp_{kk}}d\delta_{ij}\right),
+\end{equation}
+
+<p>
+where \(d\) is the dimension of the physical space (\(d=3\) for 3D elasticity, \(d=2\) for plane strain elasticity), \(\shearmod\) is the shear modulus, and \(\bulkmod\) is the bulk modulus, whose expression depends on \(d\)
+</p>
+
+\begin{align}
+\label{eq:2}\bulkmod&=\frac23\frac{1+\nu}{1-2\nu}\shearmod&&(d=3),\\
+\label{eq:3}\bulkmod&=\frac\shearmod{1-2\nu}&&(d=2).
+\end{align}
+
+<p>
+In this instalment, I am going to introduce some classical isotropic, fourth-rank tensors which will prove extremely useful and will allow us to cast Eq. \eqref{eq:1} in an intrinsic (component-free) form.<!-- more --> It should be noted that the following developments are restricted to fourth-rank tensors \(\tensiv T\) with both <i>minor</i> and <i>major</i> symmetries
+</p>
+
+\begin{align*}
+T_{ijkl}&=T_{jikl}=T_{ijlk}&&\text{(minor symmetries)},\\
+T_{ijkl}&=T_{klij}&&\text{(major symmetries)}.
+\end{align*}
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Spherical and deviatoric projection tensors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In the present section, I am going to introduce the fourth-rank identity, spherical and deviatoric projection tensors.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Fourth-rank identity tensor</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The fourth-rank identity tensor \(\identiv\) maps any second-rank, symmetric tensor \(\tensii u\) to itself
+</p>
+
+\begin{equation*}
+\identiv:\tensii u=\tensii u.
+\end{equation*}
+
+<p>
+It is straightforward to work out the components of \(\identiv\) (accounting for both minor and major symmetries)
+</p>
+
+\begin{equation*}
+I_{ijkl}=\frac12\left(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}\right).
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Fourth-rank spherical projection tensor</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The fourth-rank spherical projection tensor \(\sphprojiv\) extracts the spherical part of any symmetric, second-rank tensor \(\tensii u\)
+</p>
+
+\begin{equation*}
+\sphprojiv:\tensii u=\frac1d\tr(\tensii u)\identii,
+\end{equation*}
+
+<p>
+where \(\identii\) is the second-rank identity tensor (with components $&delta;<sub>ij</sub>$). In particular, \(\sphprojiv:\identii=\identii\). In intrinsic form, \(\sphprojiv\) reads
+</p>
+
+\begin{equation*}
+\sphprojiv=\frac1d\identii\otimes\identii,
+\end{equation*}
+
+<p>
+where \(\otimes\) denotes the <a href="http://en.wikipedia.org/wiki/Tensor_product">tensor product</a>. The components of \(\sphprojiv\) are
+</p>
+
+\begin{equation*}
+J_{ijkl} = \frac1d\delta_{ij}\delta_{kl}.
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Fourth-rank deviatoric projection tensor</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The fourth-rank deviatoric projection tensor \(\devprojiv\) extracts the deviatoric part of any symmetric, second-rank tensor \(\tensii u\)
+</p>
+
+\begin{equation*}
+\devprojiv:\tensii u=\tensii u-\frac1d\tr(\tensii u)\identii=\tensii u-\sphprojiv:\tensii u,
+\end{equation*}
+
+<p>
+from which it results that
+</p>
+
+\begin{equation*}
+\devprojiv=\identiv-\sphprojiv.
+\end{equation*}
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Stiffness tensor</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Going back the constitutive law of the linearly elastic, isotropic material given by Eq. \eqref{eq:1}, it is found that
+</p>
+
+\begin{equation*}
+\stress=d\bulkmod\sphprojiv:\strain+2\shearmod\devprojiv:\strain=\stiffness:\strain,
+\end{equation*}
+
+<p>
+where \(\stiffness\) is the fourth-rank stiffness tensor of the material
+</p>
+
+\begin{equation*}
+\stiffness=d\bulkmod\sphprojiv+2\shearmod\devprojiv.
+\end{equation*}
+
+<p>
+In isotropic elasticity, the stiffness tensor is a linear combination of the two tensors \(\sphprojiv\) and \(\devprojiv\). This is in fact a general result, which is heavily used in materials science: any <i>isotropic</i> fourth-rank tensor with minor and major symmetries is a linear combination of \(\sphprojiv\) and \(\devprojiv\). In other words, \(\left(\sphprojiv, \devprojiv\right)\) forms a <i>basis</i> of the fourth-rank isotropic tensors with minor and major symmetries. Why this is useful will become obvious in the next section, where I will show that algebra in this basis is dead simple.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Algebra of the \(\sphprojiv\) and \(\devprojiv\) tensors</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+It can readily be verified that
+</p>
+
+\begin{gather*}
+\sphprojiv:\sphprojiv=\sphprojiv,\\
+\devprojiv:\devprojiv=\devprojiv,\\
+\devprojiv:\sphprojiv=\sphprojiv:\devprojiv=\tensii0.
+\end{gather*}
+
+<p>
+Therefore, multiplication of two isotropic tensors \(\tensiv T_i=a_i\sphprojiv+b_i\devprojiv\) ($i=1,2$) is trivial
+</p>
+
+\begin{equation*}
+\tensiv T_1:\tensiv T_2=a_1a_2\sphprojiv+b_1b_2\devprojiv.
+\end{equation*}
+
+<p>
+Also, inversion of an isotropic tensor \(\tensiv T=a\sphprojiv+b\devprojiv\) is straightforward
+</p>
+
+\begin{equation*}
+\tensiv T^{-1}=\frac1a\sphprojiv+\frac1b\devprojiv.
+\end{equation*}
+
+<p>
+All these expressions will prove extremely useful in due time.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Conclusion</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+This is the end of this series on the elastic constants of isotropic materials. I have shown that (regardless of the dimension \(d\) of the physical space), such materials are characterized by two constants. The shear modulus \(\shearmod\), the Poisson ratio \(\nu\) and Young's modulus \(E\) do not depend on \(d\), while the plane strains expression of the bulk modulus \(\bulkmod\) differs from its 3D expression (see Eqs. \eqref{eq:2} and \eqref{eq:3}).
+</p>
+
+<p>
+This series was also a good opportunity to introduce the tensors \(\sphprojiv\) and \(\devprojiv\), which form a basis for the isotropic, fourth-rank tensors. Using this basis is very convenient, as algebra within this basis is extremely simple.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

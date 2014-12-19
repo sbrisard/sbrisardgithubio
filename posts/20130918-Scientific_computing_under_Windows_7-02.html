@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scientific computing under Windows 7, part 2: OpenMP</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/javascript">window.twttr = (function (d, s, id) {var t, js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } }); }(document, "script", "twitter-wjs"));</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Scientific computing under Windows 7, part 2: OpenMP</h1>
+<p>
+From the <a href="http://www.openmp.org/">official website</a>
+</p>
+
+<blockquote>
+<p>
+The OpenMP API defines a portable, scalable model with a simple and flexible interface for developing parallel applications on platforms from the desktop to the supercomputer.
+</p>
+</blockquote>
+
+<p>
+To use OpenMP with MinGW, you must install the following packages (using the <code>mingw-get</code> installer)
+</p>
+
+<ul class="org-ul">
+<li><code>mingw32-pthreads-w32</code>,
+</li>
+<li><code>mingw32-libgomp</code>.
+</li>
+</ul>
+
+<p>
+To check that OpenMP indeed works, create the following <code>hello.c</code> source file
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;omp.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> <span class="org-variable-name">argv</span>[]) {
+  <span class="org-type">int</span> <span class="org-variable-name">id</span>;
+<span class="org-preprocessor">#pragma</span> omp parallel private(id)
+  {
+    id = omp_get_thread_num();
+    printf(<span class="org-string">"%d: Hello World!\n"</span>, id);
+  }
+  <span class="org-keyword">return</span> 0;
+}
+</pre>
+</div>
+
+<p>
+and compile it as follows (in the MSYS console)
+</p>
+
+<pre class="example">
+$ gcc -fopenmp -o hello hello.c
+</pre>
+
+<p>
+Running the resulting executable on my laptop (4 processors) leads to the following output
+</p>
+
+<pre class="example">
+$ ./hello.exe
+2: Hello World!
+0: Hello World!
+1: Hello World!
+3: Hello World!
+</pre>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

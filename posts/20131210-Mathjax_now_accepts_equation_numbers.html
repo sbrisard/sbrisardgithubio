@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax now accepts equation numbers</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">MathJax now accepts equation numbers</h1>
+<p>
+As of version 2.0, MathJax can <a href="http://docs.mathjax.org/en/latest/tex.html#automatic-equation-numbering">number equations automatically</a>.<!-- more --> To enable this feature, the following lines must be added <i>before</i> the <code>&lt;script&gt;</code> tag that loads MathJax itself
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span class="org-function-name">script</span> <span class="org-variable-name">type</span>=<span class="org-string">"text/x-mathjax-config"</span>&gt;
+  MathJax.Hub.Config({
+      TeX: {equationNumbers: {autoNumber: <span class="org-string">"AMS"</span>}}
+  });
+&lt;/<span class="org-function-name">script</span>&gt;
+</pre>
+</div>
+
+<p>
+Then, the following lines
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-html">\begin{equation}
+  \label{eq:1}
+  (a + b)^2=a^2+2ab+b^2
+\end{equation}
+
+&lt;<span class="org-function-name">p</span>&gt;
+Eq. \eqref{eq:1} shows that the square of the sum of $a$ and $b$ is
+&lt;<span class="org-function-name">em</span>&gt;<span class="org-italic">not</span>&lt;/<span class="org-function-name">em</span>&gt; the sum of squares of $a$ and $b$.
+&lt;<span class="org-function-name">p</span>&gt;
+</pre>
+</div>
+
+<p>
+produce
+</p>
+
+\begin{equation}
+\label{eq:1}
+(a + b)^2=a^2+2ab+b^2
+\end{equation}
+
+<p>
+Eq. \eqref{eq:1} shows that the square of the sum of \(a\) and \(b\) is <i>not</i> the sum of squares of \(a\) and \(b\).
+</p>
+
+<p>
+I will try and update this whole blog accordingly.
+</p>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

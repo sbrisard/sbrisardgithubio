@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LaTeX: a bug with subequations</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/javascript">window.twttr = (function (d, s, id) {var t, js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } }); }(document, "script", "twitter-wjs"));</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">LaTeX: a bug with subequations</h1>
+<p>
+While working on my latest paper, I've come accross what looks like a bug with the <code>subequations</code> environment from the <a href="http://www.ams.org/publications/authors/tex/amslatex">amsmath</a> package. Here is a simple code snippet that demonstrates this bug
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-latex"><span class="org-font-latex-sedate"><span class="org-keyword">\documentclass</span></span>{<span class="org-function-name">article</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\usepackage</span></span>{<span class="org-function-name">amsmath</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">document</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-math">  a^2-b^2 = (a-b)(a+b)</span>
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">subequations</span>}
+  <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">align</span>}
+<span class="org-font-latex-math">    (a + b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 + 2ab + b^2</span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
+<span class="org-font-latex-math">    (a - b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 - 2ab + b^2</span>
+<span class="org-font-latex-math">  </span><span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">align</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">subequations</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-math">  a^3 - b^3 = (a - b)(a^2 + ab + b^2)</span>
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">document</span>}
+</pre>
+</div>
+
+<p>
+As it should, the code above results in the following document
+</p>
+
+
+<div class="figure">
+<p><img src="./20130917-LaTeX_a_bug_with_subequations/subequations_ok.png" alt="subequations_ok.png" width="400px" height="170px">
+</p>
+</div>
+
+<p>
+Now, assume that Eqs. (2a) and (2b) are never referred to; then the equation numbers might be removed. A natural way to do so would be starring the <code>align</code> environment
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-latex"><span class="org-font-latex-sedate"><span class="org-keyword">\documentclass</span></span>{<span class="org-function-name">article</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\usepackage</span></span>{<span class="org-function-name">amsmath</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">document</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-math">  a^2-b^2 = (a-b)(a+b)</span>
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">subequations</span>}
+  <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">align*</span>}
+<span class="org-font-latex-math">    (a + b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 + 2ab + b^2</span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
+<span class="org-font-latex-math">    (a - b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 - 2ab + b^2</span>
+<span class="org-font-latex-math">  </span><span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">align*</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">subequations</span>}
+
+<span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-math">  a^3 - b^3 = (a - b)(a^2 + ab + b^2)</span>
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
+<span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">document</span>}
+</pre>
+</div>
+
+<p>
+Here is the result
+</p>
+
+
+<div class="figure">
+<p><img src="./20130917-LaTeX_a_bug_with_subequations/subequations_bug.png" alt="subequations_bug.png" width="400px" height="170px">
+</p>
+</div>
+
+<p>
+The two equations in the <code>subequations</code> environment are no longer numbered. However, the equation number is wrongly incremented! Therefore, not only should the <code>align</code> environment be starred, but the <code>subequations</code> should also be commented out.
+</p>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

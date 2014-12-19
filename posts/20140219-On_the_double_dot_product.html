@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>On the double dot product</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">On the double dot product</h1>
+<div class="abstract">
+<p>
+The double dot product of two tensors is the contraction of these tensors with respect to the last two indices of the first one, and the first two indices of the second one. Whether or not this contraction is performed on the <i>closest</i> indices is a matter of convention. In this post, I will show that this choice has some important implications.
+</p>
+
+</div>
+
+<p>
+Let \(\tensii a\) and \(\tensii b\) be two second-rank tensors. The following two alternative definitions might be adopted for the double dot product \(\tensii a:\tensii b\)
+</p>
+<dl class="org-dl">
+<dt><a id="def:1"></a> Definition 1</dt><dd>\(\tensii a:\tensii b=a_{ij}b_{ji}\) (contraction on the closest indices),
+</dd>
+<dt><a id="def:2"></a> Definition 2</dt><dd>\(\tensii a:\tensii b=a_{ij}b_{ij}\).
+</dd>
+</dl>
+
+<p>
+In continuum mechanics, most second-rank tensors (strain, stress) are symmetric, so that both definitions coincide. In the general case of asymmetric tensors however, it is important to check which convention is adopted by the author. In the present post, we examine both definitions in turn, and how they affect the expression of the transpose of fourth-rank tensors, the definition of which is first recalled.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Transpose of a fourth-rank tensor</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Let \(\tensiv A\) be a fourth-rank tensor. Then the linear mapping \(\tensii x\mapsto\tensiv A:\tensii x\) (\(\tensii x\): second-rank tensor) is an endomorphism over the space of second-rank tensors. As such, it is possible to define its transpose \(\transp{\tensiv A}\), provided that the space of second-rank tensors is equipped with a scalar product \(\langle\cdot,\cdot\rangle\). Then, by definition
+</p>
+
+\begin{equation}
+\label{eq:1}
+\langle\transp{\tensiv A}:\tensii x,\tensii y\rangle=\langle\tensii x, \tensiv A:\tensii y\rangle
+\end{equation}
+
+<p>
+How is the scalar product of two second-rank tensors defined? The most obvious choice is
+</p>
+
+\begin{equation}
+\label{eq:2}
+\langle\tensii x,\tensii y\rangle=x_{ij}y_{ij},
+\end{equation}
+
+<p>
+so that the scalar product of two second-rank tensors is closely related to either definition of their double dot product. In the next sections, it is shown that each definition of the double dot product induces a different definition of the transpose.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Definition 1</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In this section, the <a href="#def:1">first definition</a> of the double dot product is examined
+</p>
+
+\begin{equation}
+\label{eq:3}
+\tensii x:\tensii y=x_{ij}y_{ji},
+\end{equation}
+
+<p>
+where \(\tensii x\) and \(\tensii y\) are second-rank tensors. Then \(\langle\tensii x,\tensii y\rangle=\transp{\tensii x}:\tensii y\). Let \(\tensiv A\) be a fourth-rank tensor. Eqs. \eqref{eq:1}, \eqref{eq:2} are used in conjunction with \eqref{eq:3} to find the components of \(\transp{\tensiv A}\)
+</p>
+
+\begin{equation*}
+\langle\tensii x, \tensiv A:\tensii y\rangle=\transp{\tensii x}:\left(\tensiv A:\tensii y\right)=\left(\transp{\tensii x}\right)_{ji}\left(\tensiv A:\tensii y\right)_{ij}=x_{ij}A_{ijkl}y_{lk}.
+\end{equation*}
+
+<p>
+Introducing the fourth-rank tensor \(\tilde{\tensiv A}\) defined component-wise by \(\tilde A_{ijkl}=A_{lkji}\), the above identity reads
+</p>
+
+\begin{equation*}
+\langle\tensii x, \tensiv A:\tensii y\rangle=y_{lk}\tilde A_{lkji}x_{ij}=\left(\transp{\tensii y}\right)_{kl}\left(\tilde{\tensiv A}:\tensii x\right)_{lk}=\transp{\tensii y}:\left(\tilde{\tensiv A}:\tensii x\right)=\langle\tilde{\tensiv A}:\tensii x,\tensii y\rangle,
+\end{equation*}
+
+<p>
+which proves that \(\tilde{\tensiv A}\) is the transpose of \(\tensiv A\). In other words, if <a href="#def:1">definition 1</a> is adopted for the double dot product, then the components of the transpose of any fourth-rank tensor \(\tensiv A\) read
+</p>
+
+\begin{equation}
+\label{eq:4}
+\left(\transp{\tensiv A}\right)_{ijkl}=A_{lkji}.
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Definition 2</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We now examine the <a href="#def:2">second definition</a> of the double dot product
+</p>
+
+\begin{equation}
+\label{eq:5}
+\tensii x:\tensii y=x_{ij}y_{ij},
+\end{equation}
+
+<p>
+where \(\tensii x\) and \(\tensii y\) are second-rank tensors. Then \(\langle\tensii x,\tensii y\rangle=\tensii x:\tensii y\). Let \(\tensiv A\) be a fourth-rank tensor. Eqs. \eqref{eq:1} and \eqref{eq:2} are again used in conjunction with Eq. \eqref{eq:5} to find the components of \(\transp{\tensiv A}\)
+</p>
+
+\begin{equation*}
+\langle\tensii x, \tensiv A:\tensii y\rangle=\tensii x:\left(\tensiv A:\tensii y\right)=x_{ij}\left(\tensiv A:\tensii y\right)_{ij}=x_{ij}A_{ijkl}y_{kl}
+\end{equation*}
+
+<p>
+Introducing the fourth-rank tensor \(\tilde{\tensiv A}\) defined component-wise by \(\tilde A_{ijkl}=A_{klij}\), the above identity reads
+</p>
+
+\begin{equation*}
+\langle\tensii x, \tensiv A:\tensii y\rangle=y_{kl}\tilde A_{klij}x_{ij}=y_{kl}\left(\tilde{\tensiv A}:\tensii x\right)_{kl}=\tensii y:\left(\tilde{\tensiv A}:\tensii x\right)=\langle\tilde{\tensiv A}:\tensii x,\tensii y\rangle,
+\end{equation*}
+
+<p>
+which proves that \(\tilde{\tensiv A}\) is the transpose of \(\tensiv A\). In other words, if <a href="#def:2">definition 2</a> is adopted for the double dot product, then the components of the transpose of a fourth-rank tensor \(\tensiv A\) read
+</p>
+
+\begin{equation}
+\label{eq:6}
+\left(\transp{\tensiv A}\right)_{ijkl}=A_{klij}.
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Which definition to adopt?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+&#x2026; is a pure matter of taste. For aesthetic reasons, I tend to prefer Eq. \eqref{eq:6} over Eq. \eqref{eq:4}. Besides, <a href="#def:2">definition 2</a> of the double dot product directly defines a scalar product over the space of second-rank tensors. Therefore, <a href="#def:2">definition 2</a> [see Eq. \eqref{eq:5}] <i>will be adopted in this blog</i>. In other words, given two tensors \(\tens T\) and \(\tens U\) of arbitrary rank (≥ 2), the product \(\tens T:\tens U\) is defined as follows
+</p>
+
+\begin{equation}
+\label{eq:7}
+\tens T:\tensii U=T_{\ldots ij}U_{ij\ldots}.
+\end{equation}
+
+<p>
+With this definition of the double dot product, the components of the transpose of a fourth-rank tensor \(\tensiv A\) are found from Eq. \eqref{eq:6}. Furthermore, Eq. \eqref{eq:7} can readily be specialized to the case of a tensor \(\tens T\) of arbitrary rank and a decomposed, second-rank tensor \(\vec u\otimes\vec v\) (\(\vec u\), \(\vec v\): vectors)
+</p>
+
+\begin{align*}
+\tensiv T:\left(\vec u\otimes\vec v\right)&=\left(\tensiv T\cdot\vec v\right)\cdot\vec u,\\
+\left(\vec u\otimes\vec v\right):\tensiv T&=\vec v\cdot\left(\vec u\cdot\tensiv T\right).
+\end{align*}
+
+<p>
+Finally, for a second-rank tensor \(\tensii a\) and a decomposed, second-rank tensor \(\vec u\otimes\vec v\) (\(\vec u\), \(\vec v\): vectors)
+</p>
+
+\begin{equation*}
+\tensii a:\left(\vec u\otimes\vec v\right)=\left(\vec u\otimes\vec v\right):\tensii a=\vec u\cdot\tensii a\cdot\vec v.
+\end{equation*}
+
+<p>
+To conclude, two definitions of the double dot product are possible, and one should always checked which is adopted. It should be kept in mind that, while arbitrary, this choice has many consequences, including on the definition of the transpose of fourth-rank tensors.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

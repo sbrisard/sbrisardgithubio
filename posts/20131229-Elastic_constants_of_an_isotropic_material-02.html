@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Elastic constants of an isotropic material, part 2: plane strain elasticity</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Elastic constants of an isotropic material, part 2: plane strain elasticity</h1>
+<p>
+In the <a href="./20131205-Elastic_constants_of_an_isotropic_material-01.html">previous instalment</a> of this series, I introduced the constitutive law of an isotropically elastic material, and the related material constants, within the framework of 3D elasticity. I will now address the case of plane strain elasticity.<!-- more -->
+</p>
+
+<p>
+Problems of plane strain elasticity are defined as problems where the following components of the strain tensor are null
+</p>
+\begin{equation}
+    \label{eq:1}
+    \straincomp_{31} = \straincomp_{23} = \straincomp_{33} = 0.
+\end{equation}
+
+<p>
+This is typically true of problems for which the geometry <i>and the loading</i> are invariant along the third direction \(\vec e_3\). In what follows, it will be covenient to adopt the following classical notation
+</p>
+
+<ul class="org-ul">
+<li>latin indices (e.g. $i, j, k$) can take values in \(\{1, 2, 3\}\),
+</li>
+<li>greek indices (e.g. $&alpha;, &beta;, &gamma;$) can take values in \(\{1, 2\}\).
+</li>
+</ul>
+
+<p>
+In both cases, Einstein's convention applies; in other words, \(\straincomp_{kk}\) stands for
+</p>
+\begin{equation*}
+    \sum_{k=1}^3\straincomp_{kk},
+\end{equation*}
+<p>
+while \(\straincomp_{\gamma\gamma}\) stands for
+</p>
+\begin{equation*}
+    \sum_{\gamma=1}^2\straincomp_{\gamma\gamma}.
+\end{equation*}
+
+<p>
+As in the previous instalment, the constitutive laws in isotropic, plane strain elasticity will be derived using various sets of material constants, starting with the bulk modulus \(E\) and the Poisso ratio \(\nu\).
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Young's modulus and Poisson ratio</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We first recall the consitutive law in isotropic, 3D elasticity
+</p>
+\begin{equation}
+    \label{eq:2}
+    \straincomp_{ij}=\frac{1+\nu}E\stresscomp_{ij}-\frac\nu E\stresscomp_{kk}\delta_{ij}.
+\end{equation}
+
+<p>
+Combination of Eqs. \eqref{eq:1} and \eqref{eq:2} for \((i, j)=(3, 1)\) and \((i, j)=(2, 3)\), first leads to \(\stresscomp_{31}=\stresscomp_{23}=0\). Then, for \((i, j) = (3, 3)\), \(\stresscomp_{33}=\nu\stresscomp_{\gamma\gamma}\). The 3D trace of \(\stress\) can therefore be expressed as a function of its 2D trace
+</p>
+\begin{equation*}
+    \stresscomp_{kk}=\left(1+\nu\right)\stresscomp_{\gamma\gamma}.
+\end{equation*}
+
+<p>
+Substituting in Eq. \eqref{eq:2}
+</p>
+\begin{equation}
+    \label{eq:3}
+    \straincomp_{\alpha\beta}=\frac{1+\nu}E\left(\stresscomp_{\alpha\beta}-\nu\stresscomp_{\gamma\gamma}\delta_{\alpha\beta}\right),
+\end{equation}
+<p>
+which is the plane strain constitutive low we were looking for.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Shear modulus and Poisson ratio</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Recalling (see <a href="./20131205-Elastic_constants_of_an_isotropic_material-01.html">previous instalment</a>) that \(E=2\shearmod\left(1+\nu\right)\), Eq. \eqref{eq:2} can also be cast as follows
+</p>
+\begin{equation}
+    \label{eq:4}
+    \straincomp_{\alpha\beta}=\frac1{2\shearmod}\left(\stresscomp_{\alpha\beta}-\nu\stresscomp_{\gamma\gamma}\delta_{\alpha\beta}\right).
+\end{equation}
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Bulk and shear moduli</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+For (2D) isotropic stresses, \(\stresscomp_{\alpha\beta}=-p\delta_{\alpha\beta}\), Eq. \eqref{eq:4} reads
+</p>
+\begin{equation*}
+    \straincomp_{\alpha\beta}=-\frac{1-2\nu}{2\shearmod}p\delta_{\alpha\beta},
+\end{equation*}
+<p>
+and the relative surface change \(\straincomp_\text s\), defined as \(\straincomp_\text s=\straincomp_{\gamma\gamma}\), reads
+</p>
+\begin{equation*}
+    \straincomp_\text s=-\frac p{\bulkmod_\text{2D}},
+\end{equation*}
+<p>
+with
+</p>
+\begin{equation}
+    \label{eq:5}
+    \bulkmod_\text{2D}=\frac\shearmod{1-2\nu}.
+\end{equation}
+
+<p>
+\(\bulkmod_\text{2D}\) thus defined is the 2D (plane strain) bulk modulus of the material. Attention should be paid to the fact that, unlike the shear modulus, the bulk modulus of a material <i>depends on the dimension of the physical space</i>. More generally, the (2D) trace of the strain tensor is related to the average stress
+</p>
+\begin{equation}
+    \label{eq:6}
+    \straincomp_{\gamma\gamma}=\frac{1-2\nu}{2\shearmod}\stresscomp_{\gamma\gamma}.
+\end{equation}
+
+<p>
+Combining Eqs. \eqref{eq:4} and \eqref{eq:6}
+</p>
+\begin{equation*}
+    \stresscomp_{\alpha\beta}=2\shearmod\straincomp_{\alpha\beta}+\frac{2\shearmod\nu}{1-2\nu}\straincomp_{\gamma\gamma}\delta_{\alpha\beta}=\frac{\shearmod}{1-2\nu}\straincomp_{\gamma\gamma}\delta_{\alpha\beta}+2\shearmod\left(\straincomp_{\alpha\beta}-\frac{\straincomp_{\gamma\gamma}}2\delta_{\alpha\beta}\right),
+\end{equation*}
+<p>
+and the stress-strain relationship finally reads
+</p>
+\begin{equation*}
+    \stresscomp_{\alpha\beta}=\bulkmod_\text{2D}\straincomp_{\gamma\gamma}\delta_{\alpha\beta}+2\shearmod\left(\straincomp_{\alpha\beta}-\frac{\straincomp_{\gamma\gamma}}2\delta_{\alpha\beta}\right).
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Conclusion</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In this instalment, we have seen how the plane strain asumption affects the constitutive law of isotropic, linear and elastic materials. In particular, the bulk modulus which is the ratio of the average stress to the relative surface change appears to be dimension dependent. In the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">next instalment</a>, we will reconcile the 3D and 2D points of view.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

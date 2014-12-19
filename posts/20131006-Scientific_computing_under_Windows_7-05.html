@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scientific computing under Windows 7, part 5: LAMMPS</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/javascript">window.twttr = (function (d, s, id) {var t, js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } }); }(document, "script", "twitter-wjs"));</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Scientific computing under Windows 7, part 5: LAMMPS</h1>
+<p>
+From the <a href="http://lammps.sandia.gov/index.html">official website</a>
+</p>
+
+<blockquote>
+<p>
+LAMMPS is a classical molecular dynamics code, and an acronym for Large-scale Atomic/Molecular Massively Parallel Simulator.
+</p>
+</blockquote>
+
+<p>
+To install from sources, download the <a href="http://lammps.sandia.gov/download.html#tar">tarball</a>. Extract it in e.g. <code>C:\src\lammps-30Sep13</code> (your version of LAMMPS might differ). Edit the file <code>C:\src\lammps-30Sep13\src\Makefile</code>, and replace the following line
+</p>
+
+<pre class="example">
+EXE =       $(ROOT)_$@
+</pre>
+
+<p>
+with
+</p>
+
+<pre class="example">
+EXE =       $(ROOT)_$@.exe
+</pre>
+
+<p>
+Then create an appropriate <code>Makefile.mingw32</code>, starting from <code>Makefile.serial</code>. In the MSYS console::
+</p>
+
+<pre class="example">
+$ cd /C/src/lammps-30Sep13/src/MAKE
+$ cp Makefile.serial Makefile.mingw32
+</pre>
+
+<p>
+If you want to link LAMMPS against FFTW (which you must first install, see a previous post), edit the newly created file and modify the lines relating to FFT
+</p>
+
+<pre class="example">
+FFT_INC = -DFFT_FFTW3 -I/mingw/include
+FFT_PATH = -L/mingw/lib
+FFT_LIB = -lfftw3
+</pre>
+
+<p>
+(assuming you have installed the static version of the library). Before you compile LAMMPS itself, you need to compile the MPI stubs, which is a dummy (serial) replacement for a true MPI library. This should normally be done by <code>make stubs</code>, but this last command somehow does not work
+</p>
+
+<pre class="example">
+$ cd /C/src/lammps-30Sep13/src
+make: `stubs' is up to date.
+</pre>
+
+<p>
+The solution is to force compilation of the stubs::
+</p>
+
+<pre class="example">
+$ cd /C/src/lammps-30Sep13/src/STUBS
+$ make
+</pre>
+
+<p>
+which produces a file <code>libmpi_stubs.a</code>. You are now ready to compile::
+</p>
+
+<pre class="example">
+$ cd /C/src/lammps-30Sep13/src
+$ make mingw32
+</pre>
+
+<p>
+which produces an executable <code>src/lmp_mingw32.exe</code>. To test this executable, go to the <code>examples</code> directory::
+</p>
+
+<pre class="example">
+$ cd /C/src/lammps-30Sep13/examples
+</pre>
+
+<p>
+and run one of the applications, for example::
+</p>
+
+<pre class="example">
+$ cd micelle
+$ ../../src/lmp_mingw32.exe &lt; in.micelle
+</pre>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

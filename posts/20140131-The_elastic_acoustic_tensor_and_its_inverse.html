@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The elastic acoustic tensor and its inverse</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">The elastic acoustic tensor and its inverse</h1>
+<div class="abstract">
+<p>
+In this post, I will introduce the acoustic tensor of linearly elastic materials. Closed-form expressions of the inverse of this tensor can be derived in the case of <i>isotropic</i> materials. This will later come in handy to derive closed-form expressions of the periodic Green operator for strains.
+</p>
+
+</div>
+
+<p>
+We consider a linearly elastic material with stiffness \(\stiffness\). For any wave-vector \(\vec k\), the elastic acoustic tensor \(\acoustic(\vec k)\) is defined as follows
+</p>
+
+\begin{equation}
+\label{eq:1}
+\acoustic(\vec k)=\vec k\cdot\stiffness\cdot\vec k=k^2\vec n\cdot\stiffness\cdot\vec n,
+\end{equation}
+
+<p>
+where \(k\) is the amplitude of the wave-vector \(\vec k\), \(k=\sqrt{\vec k\cdot\vec k}\), and \(\vec n\) is its direction ($\vec k=k\vec n$). The acoustic tensor is used to assess material stability (<a href="../pages/references.html#BIGO1994">Bigoni and Zaccaria, 1994</a>) and study the propagation of waves (<a href="../pages/references.html#GENT2013">Gentile and Straughan, 2013</a>). As far as we are concerned, the derivation of the periodic Green operator for strains will require the expressions of the inverse of the acoustic tensor<!-- TODO Insert hyperlink -->. This is the topic of the present post<!-- more -->, which is restricted to isotropic materials: the stiffness tensor \(\stiffness\) of isotropic materials is therefore a linear combination of the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">isotropic projection tensors</a> \(\sphprojiv,\devprojiv\)
+</p>
+
+\begin{equation}
+\label{eq:2}
+\stiffness=d\bulkmod\sphprojiv+2\shearmod\devprojiv
+\end{equation}
+
+<p>
+To compute the elastic acoustic tensor, we therefore need to find the expressions of \(\vec n\cdot\sphprojiv\cdot\vec n\) and \(\vec n\cdot\devprojiv\cdot\vec n\), for any unit vector \(\vec n\). We start with the computation of \(\vec n\cdot\identiv\cdot\vec n\), where \(\identiv\) denotes the fourth-rank identity tensor. We have
+</p>
+
+\begin{equation*}
+\left(\vec n\cdot\identiv\cdot\vec n\right)_{jk}=n_i\identivcomp_{ijkl}n_l=n_in_l\frac12\left(\delta_{il}\delta_{jk}+\delta_{jl}\delta_{ik}\right)=\frac12\left(n_in_i\delta_{jk}+n_jn_k\right).
+\end{equation*}
+
+<p>
+Since \(\vec n\) is a unit vector, we have \(n_in_i=1\), and
+</p>
+
+\begin{equation*}
+\vec n\cdot\identiv\cdot\vec n=\frac12\left(\identii+\vec n\otimes\vec n\right),
+\end{equation*}
+
+<p>
+where \(\identii\) denotes the second-rank identity tensor. It will be convenient to introduce the projectors \(\tensii p\) and \(\tensii q\), defined as follows
+</p>
+
+\begin{equation*}
+\tensii p=\vec n\otimes\vec n\qquad\tensii q=\identii-\tensii p,
+\end{equation*}
+
+<p>
+or, using indices
+</p>
+
+\begin{equation*}
+p_{ij}=n_in_j\qquad q_{ij}=\delta_{ij}-n_in_j.
+\end{equation*}
+
+<p>
+It can readily be verified that
+</p>
+\begin{equation}
+\label{eq:3}
+\tensii p\cdot\tensii p=\tensii p,\qquad\tensii q\cdot\tensii q=\tensii q,\qquad\tensii p\cdot\tensii q=\tensii q\cdot\tensii p=\tensii0,
+\end{equation}
+
+<p>
+and
+</p>
+
+\begin{equation}
+\label{eq:4}
+\vec n\cdot\identiv\cdot\vec n=\tensii p+\frac12\tensii q.
+\end{equation}
+
+<p>
+Similarly
+</p>
+
+\begin{equation}
+\label{eq:5}
+\vec n\cdot\sphprojiv\cdot\vec n=\frac1d\vec n\cdot\left(\identii\otimes\identii\right)\cdot\vec n=\frac1d\vec n\otimes\vec n=\frac1d\tensii p.
+\end{equation}
+
+<p>
+Finally, combining identity \(\devprojiv=\identiv-\sphprojiv\) with Eqs. \eqref{eq:4} and \eqref{eq:5}
+</p>
+
+\begin{equation}
+\label{eq:6}
+\vec n\cdot\devprojiv\cdot\vec n=\frac{d-1}d\tensii p+\frac12\tensii q.
+\end{equation}
+
+<p>
+The acoustic tensor of an elastic, linear, isotropic material is obtained from Eqs. \eqref{eq:1}, \eqref{eq:2}, \eqref{eq:5} and \eqref{eq:6}
+</p>
+
+\begin{equation*}
+\acoustic(\vec n)=\left(\bulkmod+2\shearmod\frac{d-1}d\right)\tensii p+\shearmod\tensii q.
+\end{equation*}
+
+<p>
+From <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">this post</a>, it can readily be verified that
+</p>
+
+\begin{equation*}
+\bulkmod+2\shearmod\frac{d-1}d=2\shearmod\frac{1-\nu}{1-2\nu},
+\end{equation*}
+
+<p>
+this identity being true in both 3D and plane strain elasticity. The acoustic tensor therefore reads
+</p>
+
+\begin{equation*}
+\acoustic(\vec k)=k^2\shearmod\left(\frac{2\left(1-\nu\right)}{1-2\nu}\tensii p+\tensii q\right).
+\end{equation*}
+
+<p>
+Finally, using the properties of the projectors \(\tensii p\) and \(\tensii q\) [see Eq. \eqref{eq:3}], the <i>inverse</i> of the acoustic tensor can be derived
+</p>
+
+\begin{equation*}
+\acoustic^{-1}(\vec k)=\frac1{k^2\shearmod}\left(\frac{1-2\nu}{2\left(1-\nu\right)}\tensii p+\tensii q\right).
+\end{equation*}
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

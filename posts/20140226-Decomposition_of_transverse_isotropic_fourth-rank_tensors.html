@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Decomposition of transverse isotropic, fourth-rank tensors</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Decomposition of transverse isotropic, fourth-rank tensors</h1>
+<div class="abstract">
+<p>
+In <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">a previous post</a>, I introduced the fourth-rank spherical and deviatoric projection tensors. Any isotropic fourth-rank tensor is a linear combination of these two tensors; in other words, the space of isotropic fourth-rank tensors (with minor and major symmetries) is of dimension 2. Similarly, it can be shown (<a href="../pages/references.html#WALP1984">Walpole, 1984</a>) that the space of three-dimensional, <i>transverse isotropic</i> fourth-rank tensors (with minor and major symmetries) is of dimension 6. Furthermore; it is possible to produce a convenient basis of this space. This is the topic of the present post, which is mostly based on the paper by Walpole (<a href="../pages/references.html#WALP1984">1984</a>).
+</p>
+
+</div>
+
+<p>
+\(\newcommand{\kronecker}{\circledast}\)
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Two second-rank projection tensors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+It is recalled that transverse isotropy is defined by one single preferred direction. In the present post, \(\vec n\) denotes the unit vector which indicates this preferred direction. Then, \(\tensii p\) and \(\tensii q\) are the following projectors
+</p>
+
+\begin{equation}
+\newcommand{\p}{\tensii p}
+\newcommand{\q}{\tensii q}
+\label{eq:1}
+\p=\vec n\otimes\vec n,\quad\q=\identii-\p.
+\end{equation}
+
+<p>
+\(\p\) is the projector onto the direction of anisotropy \(\vec n\), while \(\q\) is the projection onto the plane of isotropy (orthogonal to $\vec n$). It can readily be verified that
+</p>
+
+\begin{align*}
+\p\cdot\p&=\p,&\q\cdot\q&=\q,&\p\cdot\q&=\q\cdot\p=\tensii 0,\\
+\p:\p&=1,&\q:\q&=2,&\p:\q&=\q:\p=0.
+\end{align*}
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Tensor product of linear transformations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+It will be convenient to introduce a new, Kronecker-like product of two second-rank tensors, which Del Piero (<a href="../pages/references.html#PIER1979">1979</a>) named <i>tensor product of linear transformations</i>, and which will be denoted \(\boxtimes{}\).
+</p>
+
+<p>
+As a preliminary note, it should be observed that any fourth-rank tensor \(\tensiv A\) can be viewed as a endomorphism over the space of second-rank tensors, since \(\tensii x\mapsto\tensiv A:\tensii x\) is a linear mapping (the convention adopted in this blog for the double dot product has been specified in a <a href="./20140219-On_the_double_dot_product.html">previous post</a>). Therefore, the fourth-rank tensor \(\tensii a\boxtimes\tensii b\) (\(\tensii a, \tensii b\): second-rank tensors) can be defined by how it operates on second-rank tensors \(\tensii x\)
+</p>
+
+\begin{equation}
+\label{eq:2}
+\left(\tensii a\boxtimes\tensii b\right):\tensii x=\tensii a\cdot\tensii x\cdot\transp{\tensii b}.
+\end{equation}
+
+<p>
+Writing the above definition in terms of the components of \(\tensii a\), \(\tensii b\) and \(\tensii x\), it is found that \(\left(\tensii a\boxtimes\tensii b\right):\tensii x=a_{ik}x_{kl}b_{jl}\vec e_i\otimes\vec e_j\), which shows that the components of \(\tensii a\boxtimes\tensii b\) are
+</p>
+
+\begin{equation}
+\label{eq:3}
+\left(\tensii a\boxtimes\tensii b\right)_{ijkl}=a_{ik}b_{jl},
+\end{equation}
+
+<p>
+from which it results
+</p>
+
+\begin{equation*}
+\transp{\left(\tensii a\boxtimes\tensii b\right)}=\transp{\tensii a}\boxtimes\transp{\tensii b}.
+\end{equation*}
+
+<p>
+Given four second-rank tensors \(\tensii a\), \(\tensii b\), \(\tensii c\) and \(\tensii d\), the following identity holds
+</p>
+
+\begin{equation}
+\label{eq:4}
+\left(\tensii a\boxtimes\tensii b\right):\left(\tensii c\boxtimes\tensii d\right)=\left(\tensii a\cdot\tensii c\right)\boxtimes\left(\tensii b\cdot\tensii d\right).
+\end{equation}
+
+<p>
+Indeed, let \(\tensii x\) be a second-rank tensor. Then, from Eq. \eqref{eq:2}
+</p>
+
+\begin{align*}
+\left(\tensii a\boxtimes\tensii b\right):\left(\tensii c\boxtimes\tensii d\right):\tensii x&=\left(\tensii a\boxtimes\tensii b\right):\left(\tensii c\cdot\tensii x\cdot\transp{\tensii d}\right)=\tensii a\cdot\left(\tensii c\cdot\tensii x\cdot\transp{\tensii d}\right)\cdot\transp{\tensii b}\\
+&=\left(\tensii a\cdot\tensii c\right)\cdot\tensii x\cdot\left(\transp{\tensii d}\cdot\transp{\tensii b}\right)=\left(\tensii a\cdot\tensii c\right)\cdot\tensii x\cdot\transp{\left(\tensii b\cdot\tensii d\right)}\\
+&=\left(\left(\tensii a\cdot\tensii c\right)\boxtimes\left(\tensii b\cdot\tensii d\right)\right):\tensii x.
+\end{align*}
+
+<p>
+Eq. \eqref{eq:3} shows that even if \(\tensii a\) and \(\tensii b\) are symmetric, the tensor product \(\tensii a\boxtimes\tensii b\) does not necessarily have the minor symmetries. It will therefore be convenient to define \(\tensii a\boxtimessym\tensii b\), as the tensor \(\tensii a\boxtimes\tensii b\), <i>symmetrized with respect to the last two indices</i>
+</p>
+
+\begin{equation*}
+\left(\tensii a\boxtimessym\tensii b\right)_{ijkl}=\frac12\left(a_{ik}b_{jl}+a_{il}b_{jk}\right),
+\end{equation*}
+
+<p>
+or, in intrinsic form (\(\tensii x\): second-rank tensor)
+</p>
+
+\begin{equation}
+\label{eq:5}
+\left(\tensii a\boxtimessym\tensii b\right):\tensii x=\frac12\left(\tensii a\boxtimes\tensii b\right):\left(\tensii x+\transp{\tensii x}\right)=\frac12\tensii a:\left(\tensii x+\transp{\tensii x}\right):\transp{\tensii b}.
+\end{equation}
+
+<p>
+An identity similar to Eq. \eqref{eq:4} can then be derived with \(\boxtimessym\)
+</p>
+
+\begin{equation}
+\label{eq:6}
+\left(\tensii a\boxtimessym\tensii b\right):\left(\tensii c\boxtimessym\tensii d\right)=\frac12\left(\left(\tensii a\cdot\tensii c\right)\boxtimessym\left(\tensii b\cdot\tensii d\right)+\left(\tensii a\cdot\tensii d\right)\boxtimessym\left(\tensii b\cdot\tensii c\right)\right).
+\end{equation}
+
+<p>
+The following identities, involving the second-rank projectors \(\p\) and \(\q\) [see Eq. \eqref{eq:1}], readily follow from Eq. \eqref{eq:3}
+</p>
+\begin{align*}
+\left(\p\boxtimessym\p\right):\p&=\p, & \left(\p\boxtimessym\p\right):\q&=\tensii 0,\\
+\left(\q\boxtimessym\q\right):\p&=\tensii 0, & \left(\q\boxtimessym\q\right):\q&=\q,
+\end{align*}
+<p>
+and
+</p>
+\begin{equation*}
+\left(\p\boxtimessym\q\right):\p=\left(\p\boxtimessym\q\right):\q=\left(\q\boxtimessym\p\right):\p=\left(\q\boxtimessym\p\right):\q=\tensii 0.
+\end{equation*}
+
+<p>
+Besides, the following multiplication table results from Eq. \eqref{eq:6} \(\newcommand{\x}{\boxtimessym}\)
+</p>
+
+<table id="tab:1" class="center">
+<caption class="t-above"><span class="table-number">Table 1:</span> Multiplication table for the tensors \(\p\x\p\), \(\p\x\q\), \(\q\x\p\) and \(\q\x\q\).</caption>
+
+<colgroup>
+<col  class="center">
+</colgroup>
+
+<colgroup>
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="center">\(:\)</th>
+<th scope="col" class="center">\(\p\x\p\)</th>
+<th scope="col" class="center">\(\p\x\q\)</th>
+<th scope="col" class="center">\(\q\x\p\)</th>
+<th scope="col" class="center">\(\q\x\q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="center">\(\p\x\p\)</td>
+<td class="center">\(\p\x\p\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\p\x\q\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\q\x\p\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\q\x\q\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\tensii 0\)</td>
+<td class="center">\(\q\x\q\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+To conclude, it is observed that the fourth-rank tensor \(\identiv=\identii\boxtimessym\identii\) maps any second-rank tensor to its symmetric part: it reduces to the identity tensor over the space of second-rank, symmetric tensors.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Walpole's basis for transverse isotropic tensors</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Walpole (<a href="../pages/references.html#WALP1984">1984</a>) shows that any transverse isotropic tensor is a linear combination of the six fourth-rank tensors \(\tensiv E_1,\tensiv E_2,\tensiv E_3,\tensiv E_4,\tensiv F,\tensiv G\) defined as follows
+</p>
+
+\begin{gather*}
+\tensiv E_1=\p\otimes\p,\quad\tensiv E_2=\frac12\q\otimes\q,\quad\tensiv E_3=\frac1{\sqrt2}\p\otimes\q,\quad\tensiv E_4=\frac1{\sqrt2}\q\otimes\p\\
+\tensiv F=\q\boxtimessym\q-\frac12\q\otimes\q,\quad\tensiv G=\p\boxtimessym\q+\q\boxtimessym\p.
+\end{gather*}
+
+<p>
+Multiplication (in the sense of the double product) of these tensors is fairly easy, as shown by Table <a href="#tab:2">2</a> below.
+</p>
+
+<table id="tab:2" class="center">
+<caption class="t-above"><span class="table-number">Table 2:</span> Multiplication table for the tensors \(\tensiv E_i\), \(\tensiv F\) and \(\tensiv G\) ($i=1,\ldots,4$).\(\newcommand{\t}{\tensiv}\)</caption>
+
+<colgroup>
+<col  class="center">
+</colgroup>
+
+<colgroup>
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+
+<col  class="center">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="center">\(:\)</th>
+<th scope="col" class="center">\(\t E_1\)</th>
+<th scope="col" class="center">\(\t E_2\)</th>
+<th scope="col" class="center">\(\t E_3\)</th>
+<th scope="col" class="center">\(\t E_4\)</th>
+<th scope="col" class="center">\(\t F\)</th>
+<th scope="col" class="center">\(\t G\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="center">\(\t E_1\)</td>
+<td class="center">\(\t E_1\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_3\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\t E_2\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_2\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_4\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\t E_3\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_3\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_1\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\t E_4\)</td>
+<td class="center">\(\t E_4\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t E_2\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\t F\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t F\)</td>
+<td class="center">\(\t 0\)</td>
+</tr>
+
+<tr>
+<td class="center">\(\t G\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t 0\)</td>
+<td class="center">\(\t G\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The above table must be read as: "row double dot column equals cell". For example, \(\tensiv E_1:\tensiv E_3=\tensiv E_3\) and \(\tensiv E_3:\tensiv E_1=\tensiv 0\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">A convenient representation of transverse isotropic, fourth-rank tensors</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Walpole (<a href="../pages/references.html#WALP1984">1984</a>) proposes a convenient representation of any transverse isotropic tensor \(\tensiv T\), as the triplet \((A, f, g)\) where \(A\) is a 2 × 2 matrix and \(f\) and \(g\) are two scalars. This representation should be understood as
+</p>
+
+\begin{equation*}
+\tensiv T=a_{11}\tensiv E_1+a_{22}\tensiv E_2+a_{12}\tensiv E_3+a_{21}\tensiv E_4+f\tensiv F+g\tensiv G,
+\end{equation*}
+
+<p>
+where \(a_{ij}\) are the coefficients of \(A\). The condensed notation \(\tensiv T=(A, f, g)\) shall be adopted. Using the multiplication table <a href="#tab:2">2</a>, it can readily be verified that if \(\tensiv T=(A, f, g)\) and \(\tensiv T'=(A', f', g')\), then
+</p>
+
+\begin{equation*}
+\tensiv T:\tensiv T'=(A\cdot A', ff', gg').
+\end{equation*}
+
+<p>
+This representation is particularly convenient when it comes to inverting transverse isotropic tensors. Indeed,
+</p>
+
+\begin{equation*}
+\tensiv T^{-1}=(A^{-1}, 1/f, 1/g).
+\end{equation*}
+
+<p>
+Transposition is also straightforward
+</p>
+
+\begin{equation*}
+\transp{\tensiv T}=(\transp{A}, f, g).
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Decomposition of fourth-rank, isotropic tensors in Walpole's basis</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The isotropic tensors \(\identiv\), \(\sphprojiv\) and \(\devprojiv\) introduced <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">previously</a> can be considered as transverse isotropic tensors. As such, they can be decomposed in Walpole's basis. First, the identity tensor \(\identiv\) decomposes as follows
+</p>
+
+\begin{align*}
+\identiv&=\identii\boxtimessym\identii=\left(\p+\q\right)\boxtimessym\left(\p+\q\right)\\
+&=\p\boxtimessym\p+\p\boxtimessym\q+\q\boxtimessym\p+\q\boxtimessym\q\\
+&=\tensiv E_1+\tensiv G+\tensiv F+\tensiv E_2.
+\end{align*}
+
+<p>
+where the identity \(\p\boxtimessym\p=\p\otimes\p=\tensiv E_1\) has been used. Now, the decomposition of \(\sphprojiv\) is readily derived from its definition
+</p>
+
+\begin{align*}
+3\sphprojiv&=\identii\otimes\identii=\left(\p+\q\right)\otimes\left(\p+\q\right)\\
+&=\p\otimes\p+\p\otimes\q+\q\otimes\p+\q\otimes\q\\
+&=\tensiv E_1+\sqrt2\tensiv E_3+\sqrt2\tensiv E_4+2\tensiv E_2.
+\end{align*}
+
+<p>
+Finally, the decomposition of the deviatoric projection tensor \(\devprojiv\) is found from the definition \(\devprojiv=\identiv-\sphprojiv\). To sum up
+</p>
+
+\begin{gather*}
+\identiv=\left(\begin{bmatrix}1&0\\0&1\end{bmatrix}, 1, 1\right),\\
+\sphprojiv=\left(\frac13\begin{bmatrix}1&\sqrt2\\\sqrt2&2\end{bmatrix}, 0, 0\right),\\
+\devprojiv=\left(\frac13\begin{bmatrix}2&-\sqrt2\\-\sqrt2&1\end{bmatrix}, 1, 1\right).
+\end{gather*}
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Conclusion</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+In the present post, a convenient decomposition of three-dimensional, fourth-rank, transverse isotropic tensors as a linear combination of six basis tensors has been proposed. Multiplication (in the sense of the <a href="./20140219-On_the_double_dot_product.html">double dot product</a>) of these basis tensors is straightforward (see Table <a href="#tab:2">2</a>). Besides, representing transverse isotropic tensors as a (matrix, scalar, scalar) triplet eases their multiplication and inversion. Walpole's basis turns out to be very handy in many situations (including the derivation of the Green operator for strains).
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

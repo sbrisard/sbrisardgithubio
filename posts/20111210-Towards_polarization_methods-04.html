@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Towards polarization methods, part 4: bounds on the macroscopic elastic properties</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Towards polarization methods, part 4: bounds on the macroscopic elastic properties</h1>
+<p>
+Back from a long silent period&#x2026; In <a href="./20111019-Towards_polarization_methods-02.html">part 2</a> of this series, I introduced the <i>variational</i> principle of <a href="../pages/references.html#HASH1962">Hashin and Shtrikman (1962)</a>. Then, in <a href="./20111031-Towards_polarization_methods-03.html">part 3</a>, I showed how further assumptions on the reference material led to the <i>energy</i> principle of Hashin and Shtrikman. Both principles are great tools to derive numerical methods for the computation of strain/stress fields in highly heterogeneous materials (where other methods &#x2013; eg finite elements &#x2013; would have a hard time doing the same calculation). But the energy principle also allows the derivation of theoretical results, such as rigorous bounds on the macroscopic properties. Why this is so is the topic of today's instalment.<!-- more -->
+</p>
+
+<p>
+Let \(\polarization\) be the solution of the Lippmann-Schwinger equation
+</p>
+
+\begin{equation}
+\label{eq:1}
+\left(\stiffness-\stiffness_0\right)^{-1}:\polarization+\greeniv_0\circledast\polarization=\Strain,
+\end{equation}
+
+<p>
+where \(\Strain\) is the (imposed) macroscopic strain. We seek the value \(\mathcal H(\polarization)\) of the functional of Hashin and Shtrikman \(\mathcal H\) (defined in <a href="./20111019-Towards_polarization_methods-02.html">part 2</a> of this series), at point \(\polarization\)
+</p>
+
+\begin{equation}
+\label{eq:2}
+\mathcal H(\polarization)=\Strain:\volavg{\polarization}-\frac12\volavg{\polarization:\left(\stiffness-\stiffness_0\right)^{-1}:\polarization}-\frac12\volavg{\polarization:\left(\greeniv_0\circledast\polarization\right)}.
+\end{equation}
+
+<p>
+Substituting Eq. \eqref{eq:1} in Eq. \eqref{eq:2}, we find
+</p>
+
+\begin{equation}
+\label{eq:3}
+\mathcal H(\polarization)=\frac12\Strain:\volavg{\polarization}.
+\end{equation}
+
+<p>
+Now is a good time to remember that the polarization \(\polarization\) is related to the strain \(\strain\) by the following equation
+</p>
+
+\begin{equation}
+\label{eq:4}
+\polarization=\left(\stiffness-\stiffness_0\right):\strain,
+\end{equation}
+
+<p>
+Combining Eqs. \eqref{eq:3} and \eqref{eq:4} then leads to
+</p>
+
+\begin{equation}
+\label{eq:5}
+\mathcal H(\polarization)=\frac12\Strain:\volavg{\left(\stiffness-\stiffness_0\right):\strain}=\frac12\Strain:\volavg{\stiffness:\strain}-\frac12\Strain:\stiffness_0:\volavg{\strain},
+\end{equation}
+
+<p>
+where the second term accounts for the fact that the reference material is homogeneous. The above expression can be further simplified. Indeed, \(\volavg\strain=\Strain\) (this is the very definition of the macroscopic strain $\Strain$). Furthermore, \(\volavg{\stiffness:\strain} = \volavg{\stress} = \Stress\), where \(\Stress\) is the macroscopic stress in the composite. This macroscopic stress is in turn related to the macroscopic strain through the homogenized constitutive law, which reads in linear elasticity
+</p>
+
+\begin{equation}
+\label{eq:6}
+\Stress=\stiffness^\eff:\Strain,
+\end{equation}
+
+<p>
+where \(\stiffness^\eff\) is the macroscopic (or effective, or homogenized) stiffness of the composite. Eq. \eqref{eq:5} finally reduces to
+</p>
+
+\begin{equation}
+\label{eq:7}
+\mathcal H(\polarization)=\frac12\Strain:\stiffness^\eff:\Strain-\frac12\Strain:\stiffness_0:\Strain.
+\end{equation}
+
+<p>
+In other words, the value of the functional of Hashin and Shtrikman at the solution of the Lippmann-Schwinger equation is the difference between the strain energy of the composite and the strain energy of the reference material.
+</p>
+
+<p>
+While the above result is fully general, we now assume that the reference material is <i>stiffer</i> than the composite. In other words, \(\stiffness(\vec x)\leq\stiffness_0\) at any point \(\vec x\in\domain\). We then saw in <a href="./20111031-Towards_polarization_methods-03.html">part 3</a> of this series that the following inequality holds for <i>any</i> polarization field \(\prestress\)
+</p>
+
+\begin{equation}
+\label{eq:8}
+\mathcal H(\polarization)\leq\mathcal H(\prestress).
+\end{equation}
+
+<p>
+Inserting Eq. \eqref{eq:7} in Eq. \eqref{eq:8} leads for any polarization field \(\prestress\) to the following bound on the macroscopic potential energy of the composite
+</p>
+
+\begin{equation}
+\label{eq:9}
+\frac12\Strain:\stiffness^\eff:\Strain\leq\frac12\Strain:\stiffness_0:\Strain+\mathcal H(\prestress).
+\end{equation}
+
+<p>
+Similarly, if the reference material is <i>softer</i> than the composite, that is \(\stiffness(\vec x)\geq\stiffness_0\) for any \(\vec x\in\domain\), then Eq. \eqref{eq:9} should be replaced with
+</p>
+
+\begin{equation}
+\label{eq:10}
+\frac12\Strain:\stiffness^\eff:\Strain\geq\frac12\Strain:\stiffness_0:\Strain+\mathcal H(\prestress).
+\end{equation}
+
+<p>
+Eqs. \eqref{eq:9} and \eqref{eq:10} have deep (deep, deep) implications, which will be explored in the next instalment of this series.
+</p>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scientific computing under Windows 7, part 1: MinGW</title>
+<!-- 2014-12-19 Fri 06:24 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="Sébastien Brisard">
+<link href="./../css/theme.css" rel="stylesheet" />
+<script type="text/javascript">window.twttr = (function (d, s, id) {var t, js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } }); }(document, "script", "twitter-wjs"));</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="navbar"><a href="./../index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/about.html">About me</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../pages/references.html">References</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./../posts/archives.html">Archives</a></div
+</div>
+<div id="content">
+<h1 class="title">Scientific computing under Windows 7, part 1: MinGW</h1>
+<p>
+The natural OS of choice for scientific computing is of course Linux. However, running Linux on a laptop means short battery life, problems with drivers, and so on. Do not mistake me: I LOVE Linux, and have been using it since 1998 (my first distro was actually Mandrake 1.0, long gone!). However, I must admit that Linux has made little progress in terms of energy management, while Windows has improved a lot in terms of stability, to the point that it now becomes possible to use under Windows (almost) all the tools that I came to love under Linux.
+</p>
+
+<p>
+I recently reverted to Windows 7 on my professional laptop. This means that a lot of scientific tools, which come as packages in any decent Linux distro, must be installed by hand. In this series, I intend to report on the installation of these tools, and the manual tweaking that is sometimes (well, often&#x2026; okay, most of the times) required.
+</p>
+
+<p>
+The first tool, or rather set of tools I'm going to describe is <a href="http://www.mingw.org/">MinGW</a>, a contraction of "Minimalist GNU for Windows". It provides Windows binaries of all GNU compilation tools (<code>gcc</code>, <code>automake</code>, <code>autoconf</code>, &#x2026;). In turn, this suite will be extensively used to compile the libraries and programs that I need.
+</p>
+
+<p>
+Installation of MinGW, through the GUI <code>mingw-get-setup.exe</code> is fairly smooth. I chose <code>C:\MinGW\</code> as root directory for the MinGW system. Feel free to change this location, but avoid spaces in the full path. At the time of writing, I have installed the following packages
+</p>
+
+<ul class="org-ul">
+<li><code>mingw-developer-toolkit (bin)</code>
+</li>
+<li><code>mingw32-autoconf (bin)</code>
+</li>
+<li><code>mingw32-autoconf2.1 (bin)</code>
+</li>
+<li><code>mingw32-autoconf2.5 (bin)</code>
+</li>
+<li><code>mingw32-automake (bin)</code>
+</li>
+<li><code>mingw32-automake1.10 (bin)</code>
+</li>
+<li><code>mingw32-automake1.11 (bin)</code>
+</li>
+<li><code>mingw32-automake1.4 (bin)</code>
+</li>
+<li><code>mingw32-automake1.5 (bin)</code>
+</li>
+<li><code>mingw32-automake1.6 (bin)</code>
+</li>
+<li><code>mingw32-automake1.7 (bin)</code>
+</li>
+<li><code>mingw32-automake1.8 (bin)</code>
+</li>
+<li><code>mingw32-automake1.9 (bin)</code>
+</li>
+<li><code>mingw32-autotools (bin)</code>
+</li>
+<li><code>mingw32-base (bin)</code>
+</li>
+<li><code>mingw32-binutils (bin, dev)</code>
+</li>
+<li><code>mingw32-gcc (bin, dev)</code>
+</li>
+<li><code>mingw32-gcc-fortran (bin, dev)</code>
+</li>
+<li><code>mingw32-gcc-g++ (bin, dev)</code>
+</li>
+<li><code>mingw32-gdb (bin)</code>
+</li>
+<li><code>mingw32-gettext (bin, dev)</code>
+</li>
+<li><code>mingw32-libasprintf (dll)</code>
+</li>
+<li><code>mingw32-libexpat (dll)</code>
+</li>
+<li><code>mingw32-libgcc (dll)</code>
+</li>
+<li><code>mingw32-libgettextpo (dll)</code>
+</li>
+<li><code>mingw32-libgfortran (dll)</code>
+</li>
+<li><code>mingw32-libgmp (dll)</code>
+</li>
+<li><code>mingw32-libgomp (dll)</code>
+</li>
+<li><code>mingw32-libiconv (bin, dev, dll)</code>
+</li>
+<li><code>mingw32-libintl (dll)</code>
+</li>
+<li><code>mingw32-libltdl (dev, dll)</code>
+</li>
+<li><code>mingw32-libmpc (dll)</code>
+</li>
+<li><code>mingw32-libmpfr (dll)</code>
+</li>
+<li><code>mingw32-libpthread-old (dll)</code>
+</li>
+<li><code>mingw32-libpthreadgc (dll)</code>
+</li>
+<li><code>mingw32-libstdc++ (dll)</code>
+</li>
+<li><code>mingw32-libtool (bin)</code>
+</li>
+<li><code>mingw32-libz (dll)</code>
+</li>
+<li><code>mingw32-make (bin)</code>
+</li>
+<li><code>mingw32-mingw-get (bin, gui, lic)</code>
+</li>
+<li><code>mingw32-mingwrt (dev, dll)</code>
+</li>
+<li><code>mingw32-pthreads-w32 (dev)</code>
+</li>
+<li><code>mingw32-w32api (dev)</code>
+</li>
+<li><code>msys-autogen (bin)</code>
+</li>
+<li><code>msys-base (bin)</code>
+</li>
+<li><code>msys-bash (bin)</code>
+</li>
+<li><code>msys-bison (bin)</code>
+</li>
+<li><code>msys-bsdcpio (bin)</code>
+</li>
+<li><code>msys-bsdtar (bin)</code>
+</li>
+<li><code>msys-bzip2 (bin)</code>
+</li>
+<li><code>msys-console (bin)</code>
+</li>
+<li><code>msys-core (bin, doc, ext, lic)</code>
+</li>
+<li><code>msys-coreutils (bin, ext)</code>
+</li>
+<li><code>msys-cvs (bin)</code>
+</li>
+<li><code>msys-cygutils (bin)</code>
+</li>
+<li><code>msys-diffstat (bin)</code>
+</li>
+<li><code>msys-diffutils (bin)</code>
+</li>
+<li><code>msys-dos2unix (bin)</code>
+</li>
+<li><code>msys-file (bin)</code>
+</li>
+<li><code>msys-findutils (bin)</code>
+</li>
+<li><code>msys-flex (bin)</code>
+</li>
+<li><code>msys-gawk (bin)</code>
+</li>
+<li><code>msys-grep (bin)</code>
+</li>
+<li><code>msys-guile (bin)</code>
+</li>
+<li><code>msys-gzip (bin)</code>
+</li>
+<li><code>msys-inetutils (bin)</code>
+</li>
+<li><code>msys-less (bin)</code>
+</li>
+<li><code>msys-libarchive (dll)</code>
+</li>
+<li><code>msys-libbz2 (dll)</code>
+</li>
+<li><code>msys-libcrypt (dll)</code>
+</li>
+<li><code>msys-libexpat (dll)</code>
+</li>
+<li><code>msys-libgdm (dll)</code>
+</li>
+<li><code>msys-libgmp (dll)</code>
+</li>
+<li><code>msys-libguile (dll, rtm)</code>
+</li>
+<li><code>msys-libiconv (dll)</code>
+</li>
+<li><code>msys-libintl (dll)</code>
+</li>
+<li><code>msys-libltdl (dll)</code>
+</li>
+<li><code>msys-liblzma (dll)</code>
+</li>
+<li><code>msys-libmagic (dll)</code>
+</li>
+<li><code>msys-libminires (dll)</code>
+</li>
+<li><code>msys-libopenssl (dll)</code>
+</li>
+<li><code>msys-libopts (dll)</code>
+</li>
+<li><code>msys-libpopt (dll)</code>
+</li>
+<li><code>msys-libregex (dll)</code>
+</li>
+<li><code>msys-libtermcap (dll)</code>
+</li>
+<li><code>msys-libxml2 (dll)</code>
+</li>
+<li><code>msys-lndir (bin)</code>
+</li>
+<li><code>msys-m4 (bin)</code>
+</li>
+<li><code>msys-make (bin)</code>
+</li>
+<li><code>msys-mktemp (bin)</code>
+</li>
+<li><code>msys-openssh (bin)</code>
+</li>
+<li><code>msys-openssl (bin)</code>
+</li>
+<li><code>msys-patch (bin)</code>
+</li>
+<li><code>msys-perl (bin)</code>
+</li>
+<li><code>msys-rsync (bin)</code>
+</li>
+<li><code>msys-sed (bin)</code>
+</li>
+<li><code>msys-tar (bin)</code>
+</li>
+<li><code>msys-termcap (bin)</code>
+</li>
+<li><code>msys-texinfo (bin)</code>
+</li>
+<li><code>msys-unzip (bin)</code>
+</li>
+<li><code>msys-vim (bin)</code>
+</li>
+<li><code>msys-wget (bin)</code>
+</li>
+<li><code>msys-xz (bin)</code>
+</li>
+<li><code>msys-zlib (dll)</code>
+</li>
+</ul>
+
+<p>
+After installation, you must edit <code>C:\MinGW\msys\1.0\etc\fstab</code>, and add the following line
+</p>
+
+<pre class="example">
+C:\MinGW  /mingw
+</pre>
+
+<p>
+By default, MinGW sets up your home directory to point to <code>/home/$LOGNAME/</code>. If you want it to point to your Windows home instead, edit <code>C:\MinGW\msys\1.0\etc\profile</code>, and replace the line
+</p>
+
+<pre class="example">
+HOME = "/home/$LOGNAME"
+</pre>
+
+<p>
+with
+</p>
+
+<pre class="example">
+HOME = "$USERPROFILE"
+</pre>
+
+<p>
+&#x2026; and you should be ready to go!
+</p>
+</div>
+<div id="postamble" class="status">
+<a class="twitter-follow-button" href="https://twitter.com/SebBrisard" data-show-count="true" data-lang="en">Follow @SebBrisard</a>
+</div>
+</body>
+</html>
