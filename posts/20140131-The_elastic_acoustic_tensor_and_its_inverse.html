@@ -2,11 +2,11 @@
 <html>
 <head>
 <title>The elastic acoustic tensor and its inverse</title>
-<!-- 2015-01-23 Fri 01:18 -->
+<!-- 2015-01-27 Tue 07:36 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
-<link href="./../theme.css" rel="stylesheet" /><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
 <script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
 MathJax.Hub.Config({
@@ -120,7 +120,19 @@ Stress: '\\stensii{\\Sigma}',
 </head>
 <body>
 <div id="preamble" class="status">
-<img id="banner" src="./../images/banner.jpg"/><div class="navbar"><ul><li><a href="./../index.html" title="Home"><span class="fa fa-home"/></a></li><li><a href="./../pages/about.html" title="About me"><span class="fa fa-user"/></a></li><li><a href="./../pages/references.html" title="References"><span class="fa fa-book"/></a></li><li><a href="./../posts/archives.html" title="Archives"><span class="fa fa-archive"/></a></li><li><a href="./../feed.xml" title="RSS"><span class="fa fa-rss"/></a></li></ul></div>
+<img id="banner" src="../images/banner.jpg"/>
+<div class="navbar">
+<ul>
+<li><a href="../index.html" title="Home"><span class="fa fa-home"></span></a></li>
+<li><a href="../pages/about.html" title="About me"><span class="fa fa-user"></span></a></li>
+<li><a href="../pages/references.html" title="References"><span class="fa fa-book"></span></a></li>
+<li><a href="archives.html" title="Archives"><span class="fa fa-archive"></span></a></li>
+<li><a href="https://github.com/sbrisard" title="GitHub"><span class="fa fa-github"></span></a></li>
+<li><a href="https://bitbucket.org/sbrisard" title="Bitbucket"><span class="fa fa-bitbucket"></span></a></li>
+<li><a href="https://twitter.com/SebBrisard" title="Twitter"><span class="fa fa-twitter"></span></a></li>
+<li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <h1 class="title">The elastic acoustic tensor and its inverse</h1>
@@ -141,7 +153,7 @@ We consider a linearly elastic material with stiffness \(\stiffness\). For any w
 \end{equation}
 
 <p>
-where \(k\) is the amplitude of the wave-vector \(\vec k\), \(k=\sqrt{\vec k\cdot\vec k}\), and \(\vec n\) is its direction ($\vec k=k\vec n$). The acoustic tensor is used to assess material stability (<a href="../pages/references.html#BIGO1994">Bigoni and Zaccaria, 1994</a>) and study the propagation of waves (<a href="../pages/references.html#GENT2013">Gentile and Straughan, 2013</a>). As far as we are concerned, the derivation of the periodic Green operator for strains will require the expressions of the inverse of the acoustic tensor<!-- TODO Insert hyperlink -->. This is the topic of the present post<!-- more -->, which is restricted to isotropic materials: the stiffness tensor \(\stiffness\) of isotropic materials is therefore a linear combination of the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">isotropic projection tensors</a> \(\sphprojiv,\devprojiv\)
+where \(k\) is the amplitude of the wave-vector \(\vec k\), \(k=\sqrt{\vec k\cdot\vec k}\), and \(\vec n\) is its direction (\(\vec k=k\vec n\)). The acoustic tensor is used to assess material stability (<a href="../pages/references.html#BIGO1994">Bigoni and Zaccaria, 1994</a>) and study the propagation of waves (<a href="../pages/references.html#GENT2013">Gentile and Straughan, 2013</a>). As far as we are concerned, the derivation of the periodic Green operator for strains will require the expressions of the inverse of the acoustic tensor<!-- TODO Insert hyperlink -->. This is the topic of the present post<!-- more -->, which is restricted to isotropic materials: the stiffness tensor \(\stiffness\) of isotropic materials is therefore a linear combination of the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">isotropic projection tensors</a> \(\sphprojiv,\devprojiv\)
 </p>
 
 \begin{equation}
@@ -250,8 +262,6 @@ Finally, using the properties of the projectors \(\tensii p\) and \(\tensii q\) 
 </div>
 <div id="postamble" class="status">
 <p>This blog was generated with <a href="http://www.gnu.org/software/emacs/">Emacs</a> and <a href="http://orgmode.org/">Org mode</a>. The theme is inspired from <a href="http://orgmode.org/worg/">Worg</a>. Icons come from the <a href="http://fontawesome.io/">Font Awesome</a> icon set.</p>
-<a href="https://twitter.com/SebBrisard" class="twitter-follow-button" data-show-count="false">Follow @SebBrisard</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
 var disqus_shortname = 'sbrisard';
