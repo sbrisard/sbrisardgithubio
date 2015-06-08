@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Welcome!</title>
-<!-- 2015-05-29 Fri 13:23 -->
+<!-- 2015-06-08 Mon 08:44 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
@@ -32,89 +32,98 @@ You've reached the blog of Sébastien Brisard (follow the <a href="./pages/about
 </p>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><a href="./posts/20150529-Orientation_correlations_among_rice_grains-04.html">2015-05-29 &#x2013; Orientation correlations among rice grains, part 4: defining the ROI</a></h2>
+<h2 id="sec-1"><a href="./posts/20150608-When_a_thin_shell_is_not_so_thin-01.html">2015-06-08 &#x2013; When a thin shell is not so thin, part&nbsp;1: Koiter's linear theory</a></h2>
 <div class="outline-text-2" id="text-1">
+<p>
+In structural analysis, thick beams (resp. plates) usually refer to shear deformability, and the <a href="http://en.wikipedia.org/wiki/Timoshenko_beam_theory">Timoshenko beam theory</a> (resp. <a href="http://en.wikipedia.org/wiki/Mindlin%E2%80%93Reissner_plate_theory">Mindlin–Reissner plate theory</a>). With curved elements however (e.g. curved beams or shells), the situation is more subtle, as thickness corrections may be necessary even in shells <i>where the shear stress is null at any point</i>. In this series, this is illustrated with a spherical pressure vessel, for which the stress resultants and couples are studied. "Easy enough", you probably think: N=pR/2, M=0 and that's the end of it (<a href="http://en.wikipedia.org/wiki/Pressure_vessel#Stress_in_thin-walled_pressure_vessels">Wikipedia</a>). Well, maybe&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><a href="./posts/20150529-Orientation_correlations_among_rice_grains-04.html">2015-05-29 &#x2013; Orientation correlations among rice grains, part 4: defining the ROI</a></h2>
+<div class="outline-text-2" id="text-2">
 <p>
 In the <a href="./posts/20150330-Orientation_correlations_among_rice_grains-03.html">previous instalment</a> of this series, we obtained binned slices of the sample. Fig. 1 is a typical example of these binned slices. We now want to segment the rice grains. However, the analysis (in particular, Otsu thresholding) might be perturbed by the fact that the walls of the sample container are visible on the 3D image. In this post, I will show how we can locate these walls. Then, any subsequent analysis will be performed within the Region Of Interest (ROI) thus defined.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><a href="./posts/20150330-Orientation_correlations_among_rice_grains-03.html">2015-03-30 &#x2013; Orientation correlations among rice grains, part 3: intermezzo &#x2013; Binning images</a></h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><a href="./posts/20150330-Orientation_correlations_among_rice_grains-03.html">2015-03-30 &#x2013; Orientation correlations among rice grains, part 3: intermezzo &#x2013; Binning images</a></h2>
+<div class="outline-text-2" id="text-3">
 <p>
 The full reconstructed image resulting from the tomography experiment described in the <a href="./posts/20150310-Orientation_correlations_among_rice_grains-02.html">second</a> instalment of this series is a 1747×1751×688 stack. The voxel size is about 0.030 mm. This is far too much for the purpose of the present study, since all we are interested in is the determination of the location (coordinates of the centroid) and orientation (principal axes of inertia) of the rice grains. In order to reduce the computation time, the images will first be <i>binned</i>, that is each set of (say) 4×4×4 voxels will be replaced with a unique voxel, with average gray value. 3D binning would usually require three uggly nested loops. There is, however, a much more pythonic way. This is the topic of the present post.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><a href="./posts/20150310-Orientation_correlations_among_rice_grains-02.html">2015-03-10 &#x2013; Orientation correlations among rice grains, part 2: acquisition of tomography images</a></h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><a href="./posts/20150310-Orientation_correlations_among_rice_grains-02.html">2015-03-10 &#x2013; Orientation correlations among rice grains, part 2: acquisition of tomography images</a></h2>
+<div class="outline-text-2" id="text-4">
 <p>
 In the <a href="./posts/20150223-Orientation_correlations_among_rice_grains-01.html">first</a> instalment of this series, I briefly introduced orientational order in assemblies of anisotropic particles, and proposed an illustration based on synthetic microstructures. But what I really intend to do in this series is to show how orientational order can be quantified in a "real-life" sample, namely a packing of rice grains. This of course requires a 3D image of the packing. Fortunately, my lab (<a href="http://navier.enpc.fr/">Laboratoire Navier</a>) is the proud host of a <a href="http://navier.enpc.fr/Microtomographe,297">collaborative microtomography platform</a> and my former colleague Nicolas Lenoir &#x2013;who was in charge of this instrument&#x2013; gave me the opportunity to scan my toy sample in december 2013.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><a href="./posts/20150223-Orientation_correlations_among_rice_grains-01.html">2015-02-23 &#x2013; Orientation correlations among rice grains, part 1: introduction</a></h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><a href="./posts/20150223-Orientation_correlations_among_rice_grains-01.html">2015-02-23 &#x2013; Orientation correlations among rice grains, part 1: introduction</a></h2>
+<div class="outline-text-2" id="text-5">
 <p>
 In this series, I will explore the notion of orientational order in random packings of anisotropic (flat or elongated), hard particles. By orientational order, I mean that particles which are close to each other tend to adopt the same orientation. This leads to strong <i>local</i> anisotropy, while the packing may well be <i>globally</i> isotropic; in particular, all orientations of single grains are equiprobable. Local orientational order is stronger when the volume fraction of particles, or their aspect ratio increases.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><a href="./posts/20141219-New_Blog.html">2014-12-19 &#x2013; New Blog!</a></h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><a href="./posts/20141219-New_Blog.html">2014-12-19 &#x2013; New Blog!</a></h2>
+<div class="outline-text-2" id="text-6">
 <p>
 My blog was previously hosted by Blogger. I have now moved to <a href="https://pages.github.com/">GitHub Pages</a>, and a statically generated blog. This new website is entirely generated with Emacs' <a href="http://orgmode.org/">Org mode</a> (the source files of my blog can be found <a href="https://github.com/sbrisard/blog">here</a>; see in particular the <a href="https://github.com/sbrisard/blog/blob/master/sb-blog.el">config file</a>). The stylesheet is inspired by the <a href="http://orgmode.org/worg/">Hello Worg</a> website, the simplicity of which I like. It is a rather exciting experience for me to build a whole website "from scratch". Of course, there are many things I need to learn, and this blog should hopefully improve with time&#x2026; be patient! Meanwhile, have a look to my previous posts which I have ported to this site. Happy reading!
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6"><a href="./posts/20140813-Review_of_Parallel_Programming_with_Python.html">2014-08-13 &#x2013; Review of "Parallel Programming with Python"</a></h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><a href="./posts/20140813-Review_of_Parallel_Programming_with_Python.html">2014-08-13 &#x2013; Review of "Parallel Programming with Python"</a></h2>
+<div class="outline-text-2" id="text-7">
 <p>
 I have again recently been offered by <a href="http://www.packtpub.com/">Packt Publishing</a> to review one of their books, entitled <a href="http://goo.gl/oMUSLW">Parallel Programming with Python</a> (by Jan Palach).
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><a href="./posts/20140306-The_periodic_Green_operator_for_strains.html">2014-03-06 &#x2013; The periodic Green operator for strains</a></h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><a href="./posts/20140306-The_periodic_Green_operator_for_strains.html">2014-03-06 &#x2013; The periodic Green operator for strains</a></h2>
+<div class="outline-text-2" id="text-8">
 <p>
 The Green operator for strains is defined as the linear operator which maps &#x2013;in a homogeneous material&#x2013; the local prestress to the (opposite of the) local strain. Closed-form expressions of this operator can be derived in the case of periodic boundary conditions, as will be demonstrated in the present post.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><a href="./posts/20140226-Decomposition_of_transverse_isotropic_fourth-rank_tensors.html">2014-02-26 &#x2013; Decomposition of transverse isotropic, fourth-rank tensors</a></h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><a href="./posts/20140226-Decomposition_of_transverse_isotropic_fourth-rank_tensors.html">2014-02-26 &#x2013; Decomposition of transverse isotropic, fourth-rank tensors</a></h2>
+<div class="outline-text-2" id="text-9">
 <p>
 In <a href="./posts/20140112-Elastic_constants_of_an_isotropic_material-03.html">a previous post</a>, I introduced the fourth-rank spherical and deviatoric projection tensors. Any isotropic fourth-rank tensor is a linear combination of these two tensors; in other words, the space of isotropic fourth-rank tensors (with minor and major symmetries) is of dimension 2. Similarly, it can be shown (<a href="./pages/references.html#WALP1984">Walpole, 1984</a>) that the space of three-dimensional, <i>transverse isotropic</i> fourth-rank tensors (with minor and major symmetries) is of dimension 6. Furthermore; it is possible to produce a convenient basis of this space. This is the topic of the present post, which is mostly based on the paper by Walpole (<a href="./pages/references.html#WALP1984">1984</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><a href="./posts/20140219-On_the_double_dot_product.html">2014-02-19 &#x2013; On the double dot product</a></h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><a href="./posts/20140219-On_the_double_dot_product.html">2014-02-19 &#x2013; On the double dot product</a></h2>
+<div class="outline-text-2" id="text-10">
 <p>
 The double dot product of two tensors is the contraction of these tensors with respect to the last two indices of the first one, and the first two indices of the second one. Whether or not this contraction is performed on the <i>closest</i> indices is a matter of convention. In this post, I will show that this choice has some important implications.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><a href="./posts/20140131-The_elastic_acoustic_tensor_and_its_inverse.html">2014-01-31 &#x2013; The elastic acoustic tensor and its inverse</a></h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><a href="./posts/20140131-The_elastic_acoustic_tensor_and_its_inverse.html">2014-01-31 &#x2013; The elastic acoustic tensor and its inverse</a></h2>
+<div class="outline-text-2" id="text-11">
 <p>
 In this post, I will introduce the acoustic tensor of linearly elastic materials. Closed-form expressions of the inverse of this tensor can be derived in the case of <i>isotropic</i> materials. This will later come in handy to derive closed-form expressions of the periodic Green operator for strains.
 </p>
