@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Extract images from PDF files</title>
-<!-- 2015-07-01 Wed 07:33 -->
+<title>This blog is now licensed!</title>
+<!-- 2015-07-01 Wed 07:34 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
+MathJax.Hub.Config({
+extensions: ['tex2jax.js', 'TeX/AMSmath.js',
+'TeX/AMSsymbols.js'],
+jax: ['input/TeX', 'output/HTML-CSS'],
+tex2jax: {
+inlineMath: [ ['$','$'], ['\\(', '\\)'] ],
+displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+processEscapes: true,
+},
+TeX: {
+TagSide: 'left',
+Macros: {
+abs: ['\\left\|#1\\right\|', 1],
+acoustic: '\\tensii A',
+boxtimessym : '\\boxtimes^\\text s',
+bulkmod: '\\kappa',
+complexes: '\\mathbb C',
+devprojiv: '\\tensiv{K}',
+displ: '\\vec{u}',
+domain: '\\Omega',
+dS: ['\\operatorname{dS}_{#1}', 1],
+dV: ['\\operatorname{dV}_{#1}', 1],
+eff: '\\text{eff}',
+eshelby: '\\tensiv{S}',
+greeniv: '\\stensiv{\\Gamma}',
+greenivcomp: '\\Gamma',
+hill: '\\tensiv{P}',
+identii: '\\stensii{\\delta}',
+identiv: '\\tensiv{I}',
+identivcomp: 'I',
+indicator: '\\boldsymbol{1}',
+integers: '\\mathbb Z',
+meas: ['\\left\|#1\\right\|', 1],
+naturals: '\\mathbb N',
+polarization: '\\stensii{\\tau}',
+polarizationcomp: '\\tau',
+prestress: '\\stensii{\\varpi}',
+prestresscomp: '\\varpi',
+rationals: '\\mathbb Q',
+reals: '\\mathbb R',
+shearmod: '\\mu',
+sphprojiv: '\\tensiv{J}',
+stensii: ['\\svec{#1}', 1],
+stensiv: ['\\svec{#1}', 1],
+stiffness: '\\tensiv{C}',
+strain: '\\stensii{\\varepsilon}',
+straincomp: '\\varepsilon',
+stress: '\\stensii{\\sigma}',
+stresscomp: '\\sigma',
+svec: ['{\\boldsymbol{#1}}', 1],
+tens: ['\\vec{#1}', 1],
+tensii: ['\\vec{#1}', 1],
+tensiv: ['\\vec{#1}', 1],
+tr: '\\operatorname{tr}',
+transp: ['{#1}^{\\text T}', 1],
+transpinv: ['{#1}^{-\\text T}', 1],
+vec: ['{\\mathbf{#1}}', 1],
+volavg: ['\\overline{#1}', 1],
+Prestress: '\\stensii{\\Pi}',
+Strain: '\\tensii{E}',
+Stress: '\\stensii{\\Sigma}',
+}
+},
+'HTML-CSS': { availableFonts: ['TeX'] }
+});
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -26,17 +94,9 @@
 </div>
 </div>
 <div id="content">
-<h1 class="title">Extract images from PDF files</h1>
+<h1 class="title">This blog is now licensed!</h1>
 <p>
-I recently scanned a document as a PDF file, and I wanted to retrieve the embedded images. I really mean <i>extract</i> the images, and not convert the pages of the document to images (which would entail loss of data).<!-- more --> There is a nice command-line tool to do that: <code>pdfimages</code>, which ships with <a href="http://www.foolabs.com/xpdf/index.html">Xpdf</a>. To extract all images embedded in <code>document.pdf</code>
-</p>
-
-<pre class="example">
-pdfimages -j document.pdf $PATH-TO-DEST
-</pre>
-
-<p>
-Where <code>PATH-TO-DEST</code> is the path to a directory where the extracted images should be stored.
+As indicated at the bottom of each page of this website, this blog is now licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>. This means that you are free to share and/or adapt the contents of this blog, as long as you give appropriate credit to the author. You may not make profit out of this website, though.
 </p>
 </div>
 <div id="postamble" class="status">
@@ -44,9 +104,9 @@ Where <code>PATH-TO-DEST</code> is the path to a directory where the extracted i
 This blog was generated with <a href="http://www.gnu.org/software/emacs/">Emacs</a> and <a href="http://orgmode.org/">Org mode</a>. The theme is inspired from <a href="http://orgmode.org/worg/">Worg</a>. Icons come from the <a href="http://fontawesome.io/">Font Awesome</a> icon set.</p><div id="disqus_thread"></div>
 <script type="text/javascript">
 var disqus_shortname = 'sbrisard';
-var disqus_identifier = 'posts/20140102-Extract_images_from_PDF_files';
-var disqus_title = 'Extract images from PDF files';
-var disqus_url = 'http://sbrisard.github.io/posts/20140102-Extract_images_from_PDF_files.html';
+var disqus_identifier = 'posts/20150701-This_blog_is_now_licensed';
+var disqus_title = 'This blog is now licensed!';
+var disqus_url = 'http://sbrisard.github.io/posts/20150701-This_blog_is_now_licensed.html';
 (function() {
 var dsq = document.createElement('script');
 dsq.type = 'text/javascript';
