@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The Green operator for strains, part 2: elementary properties</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2015-09-30 Wed 12:40 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>The Green operator for strains, part 2: elementary properties</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -75,48 +76,28 @@ Stress: '\\stensii{\\Sigma}',
 'HTML-CSS': { availableFonts: ['TeX'] }
 });
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -141,9 +122,9 @@ Stress: '\\stensii{\\Sigma}',
 In <a href="./20110911-The_Green_operator_for_strains-01.html">part 1</a> of this series, we have seen how the Green operator for strains (\(\greeniv_0\)) was defined as the operator providing the solution to the problem of elastic equilibrium of a <i>prestressed</i> homogeneous domain. In this instalment, some simple, but useful properties of this operator will be proved.<!-- more --> We again consider the bounded domain \(\domain\subset\reals^d\), occupied by a homogeneous, linearly elastic material with stiffness \(\stiffness_0\). \(\greeniv_0\) denotes the Green operator for strains for the material \(\stiffness_0\), over the domain \(\domain\). The first property is a direct consequence of the definition of \(\greeniv_0\), given in <a href="./20110911-The_Green_operator_for_strains-01.html">part 1</a>.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Application to self-equilibrated prestresses</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Application to self-equilibrated prestresses</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 We consider a <i>self-equilibrated</i> prestress \(\prestress\) (that is, \(\nabla\cdot\prestress=\tensii0\)). We will prove that \(\greeniv_0\circledast\prestress=\tensii0\). By definition of the Green operator, \(\greeniv_0\circledast\prestress=-\strain\), where \(\strain\) is the strain which solves the following problem
 </p>
@@ -167,7 +148,7 @@ Since \(\nabla\cdot\prestress=\vec 0\), it is found that Eq. \eqref{eq:1} reduce
 Obviously, the solution to Eqs. \eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} is \(\displ=\vec 0\) (and \(\strain=\nabla^\text{s}\displ=\tensii0\)). Since \(\greeniv_0\circledast\prestress=-\strain\), it is finally found that \(\greeniv_0\circledast\prestress=\tensiv 0\). To sum up, we have proved the following property
 </p>
 
-<div class="theorem">
+<div class="THEOREM">
 <p>
 For any self-equilibrated prestress \(\prestress\)
 </p>
@@ -179,11 +160,11 @@ For any self-equilibrated prestress \(\prestress\)
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">"Square" of the Green operator</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">"Square" of the Green operator</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
-Application of the previous result leads to a useful property, which can be found in e.g. <a href="../pages/references.html#WILL2001">Willis (2001)</a>, where it is written somewhat abusively (but quite efficiently!) \(\greeniv_0\stiffness_0\greeniv_0=\greeniv_0\).
+Application of the previous result leads to a useful property, which can be found in e.g. <a href="../pages/references.html#MissingReference">Willis (2001)</a>, where it is written somewhat abusively (but quite efficiently!) \(\greeniv_0\stiffness_0\greeniv_0=\greeniv_0\).
 </p>
 
 <p>
@@ -196,7 +177,7 @@ Let \(\strain=-\greeniv_0\circledast\prestress\), and \(\stress=\stiffness_0:\st
 and, since \(\strain=-\greeniv_0\circledast\prestress\), we find the following property:
 </p>
 
-<div class="theorem">
+<div class="THEOREM">
 <p>
 For any prestress \(\prestress\),
 </p>
@@ -208,9 +189,9 @@ For any prestress \(\prestress\),
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Volume average</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Volume average</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 To close this instalment, we again consider a prestress \(\prestress\), and the associated strain \(\strain=-\greeniv_0\circledast\prestress\). We seek the value of \(\volavg\strain\), where overlined quantities denote <i>volume averages</i>
 </p>
@@ -228,7 +209,7 @@ Using Stokes' theorem, and the definition of \(\displ\)
 where \(\displ\) is the displacement associated to the strain \(\strain\), and \(\vec n\) is the outward normal to the boundary \(\partial\domain\) of the domain \(\domain\). From the boundary condition \eqref{eq:3}, we finally find \(\volavg\strain=\tensii0\). Finally
 </p>
 
-<div class="theorem">
+<div class="THEOREM">
 <p>
 For any prestress \(\prestress\),
 </p>

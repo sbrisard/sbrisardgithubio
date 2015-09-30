@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The Green operator for strains, part 1: definition</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2015-09-30 Wed 12:40 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>The Green operator for strains, part 1: definition</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -75,48 +76,28 @@ Stress: '\\stensii{\\Sigma}',
 'HTML-CSS': { availableFonts: ['TeX'] }
 });
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -179,7 +160,7 @@ where \(\vec y\in\domain\) is a fixed point, \(\delta\) is the Dirac function, a
 \end{equation}
 
 <p>
-where it should be noted that there is a minus '\(-\)' sign in the above equation. This definition (including the '\(-\)') is actually more convenient. In the more general case, the now arbitrary local prestress \(\prestress\) can always be seen as the superposition of elementary loadcases of type \eqref{eq:5}, since
+where it should be noted that there is a minus '$-$' sign in the above equation. This definition (including the '$-$') is actually more convenient. In the more general case, the now arbitrary local prestress \(\prestress\) can always be seen as the superposition of elementary loadcases of type \eqref{eq:5}, since
 </p>
 
 \begin{equation*}
@@ -195,7 +176,7 @@ Application of the superposition theorem allows us to recover the general expres
 \end{equation*}
 
 <p>
-The integral in the right-hand side is a kind of modified convolution product, which will be denoted '\(\circledast\)'
+The integral in the right-hand side is a kind of modified convolution product, which will be denoted '$\circledast$'
 </p>
 
 \begin{equation*}

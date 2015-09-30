@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Scientific computing under Windows 7, part 6: ITK (prerequisites)</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2015-09-30 Wed 12:40 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>Scientific computing under Windows 7, part 6: ITK (prerequisites)</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -28,7 +29,7 @@
 <div id="content">
 <h1 class="title">Scientific computing under Windows 7, part 6: ITK (prerequisites)</h1>
 <p>
-From the <a href="http://www.itk.org">official website</a>
+From the <a href="http://www.itk.org/">official website</a>
 </p>
 
 <blockquote>
@@ -41,9 +42,9 @@ ITK is an open-source, cross-platform system that provides developers with an ex
 Building ITK under Windows 7 is quite a trip, and will actually require several posts. We start with all prerequisites for this project.<!-- more -->
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">libjpeg</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">libjpeg</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 From the <a href="http://www.ijg.org/">official website</a>
 </p>
@@ -66,9 +67,9 @@ $ make install
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">libpng</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">libpng</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 From the <a href="http://www.libpng.org/pub/png/libpng.html">official website</a>
 </p>
@@ -91,9 +92,9 @@ $ make install
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">libtiff</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">libtiff</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 From the <a href="http://www.libtiff.org/">official website</a>
 </p>
@@ -116,9 +117,9 @@ make install
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4">HDF5</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">HDF5</h2>
+<div class="outline-text-2" id="text-orgheadline4">
 <p>
 From the <a href="http://www.hdfgroup.org/HDF5/">official website</a>
 </p>
@@ -195,9 +196,9 @@ Unfortunately, the fix proposed in the above mailing list does <i>not</i> solve 
 </div>
 </div>
 
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5">SWIG (Simplified Wrapper and Interface Generator)</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">SWIG (Simplified Wrapper and Interface Generator)</h2>
+<div class="outline-text-2" id="text-orgheadline5">
 <p>
 From the <a href="http://www.swig.org/">official website</a>
 </p>
@@ -218,9 +219,9 @@ As I would like to use ITK with Python, I need to build the Python bindings, whi
 </div>
 </div>
 
-<div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Doxygen</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6">Doxygen</h2>
+<div class="outline-text-2" id="text-orgheadline6">
 <p>
 From the <a href="http://www.stack.nl/=dimitri/doxygen/index.html">official website</a>
 </p>
@@ -238,9 +239,9 @@ Doxygen is required only if you plan to build the documentation of ITK. Use the 
 </div>
 
 
-<div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7">GCC-XML</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgheadline7" class="outline-2">
+<h2 id="orgheadline7">GCC-XML</h2>
+<div class="outline-text-2" id="text-orgheadline7">
 <p>
 From the <a href="http://gccxml.github.io/HTML/Index.html">official website</a>
 </p>
@@ -273,27 +274,20 @@ Unfortunately, the <code>Makefile</code> does not provide an <code>uninstall</co
 </p>
 
 <ul class="org-ul">
-<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml.exe</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_cc1plus.exe</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_vccconfig.bat</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_vccconfig.exe</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/share/doc/gccxml-0.9</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/share/gccxml-0.9</code>
-</li>
-<li><code>$CMAKE_INSTALL_PREFIX/man/man1/gccxml.1</code>
-</li>
+<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml.exe</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_cc1plus.exe</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_vccconfig.bat</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/bin/gccxml_vccconfig.exe</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/share/doc/gccxml-0.9</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/share/gccxml-0.9</code></li>
+<li><code>$CMAKE_INSTALL_PREFIX/man/man1/gccxml.1</code></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8">Conclusion</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-orgheadline8" class="outline-2">
+<h2 id="orgheadline8">Conclusion</h2>
+<div class="outline-text-2" id="text-orgheadline8">
 <p>
 We are now ready to compile ITK itself&#x2026; to be continued in the <a href="./20131219-Scientific_computing_under_windows_7-07.html">next installment</a> of this series.
 </p>
