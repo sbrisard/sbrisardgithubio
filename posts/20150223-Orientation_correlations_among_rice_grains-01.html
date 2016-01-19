@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Orientation correlations among rice grains, part 1: introduction</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2016-01-18 Mon 09:03 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>Orientation correlations among rice grains, part 1: introduction</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -30,6 +31,10 @@ img { margin:10px;width:30%; }
 <li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
 </ul>
 </div>
+<div id="titleblock">
+<p class="date">2015-02-23</p>
+<h1 class="title">Orientation correlations among rice grains, part 1: introduction</h1>
+</div>
 </div>
 <div id="content">
 <h1 class="title">Orientation correlations among rice grains, part 1: introduction</h1>
@@ -42,14 +47,10 @@ Local orientational order will be illustrated on a "real" packing, and I chose r
 </p>
 
 <ol class="org-ol">
-<li>acquisition of a 3D image of the packing through X-ray microtomography,
-</li>
-<li>segmentation of the 3D image (each grain must be labelled individually) by means of the <a href="http://www.population-image.fr/">Population</a> C++ library,
-</li>
-<li>computation of the orientation of each rice grain, using the <code>scipy.ndimage</code> Python module,
-</li>
-<li>computation of the orientation correlations.
-</li>
+<li>acquisition of a 3D image of the packing through X-ray microtomography,</li>
+<li>segmentation of the 3D image (each grain must be labelled individually) by means of the <a href="http://www.population-image.fr/">Population</a> C++ library,</li>
+<li>computation of the orientation of each rice grain, using the <code>scipy.ndimage</code> Python module,</li>
+<li>computation of the orientation correlations.</li>
 </ol>
 
 <p>
@@ -64,7 +65,7 @@ Before we proceed, I would like to clarify the notion of local orientational ord
 <br style="clear:both;" />
 
 <p>
-It should be mentioned that generating such compact assemblies is no trivial task. The event-driven molecular dynamics algorithm proposed by Donev, Torquato and Stillinger (<a href="../pages/references.html#DONE2005">2005</a>, <a href="../pages/references.html#DONE2005A">2005a</a>) is an attractive option: it is both very general and versatile. It is however a bit complex, and I adopted a different approach, which we published a while ago with Pierre Levitz (<a href="../pages/about.html#BRIS2013">Brisard and Levitz, 2013</a>). In a nutshell, the microstructures presented above are the result of a kind of <a href="http://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Reverse Monte-Carlo</a> simulation with a non-physical pairwise potential. The interaction potential is zero when the spheroids do not intersect, and repulsive when they do.
+It should be mentioned that generating such compact assemblies is no trivial task. The event-driven molecular dynamics algorithm proposed by Donev, Torquato and Stillinger (<a href="../pages/references.html#MissingReference">2005</a>, <a href="../pages/references.html#MissingReference">2005a</a>) is an attractive option: it is both very general and versatile. It is however a bit complex, and I adopted a different approach, which we published a while ago with Pierre Levitz (<a href="../pages/about.html#MissingReference">Brisard and Levitz, 2013</a>). In a nutshell, the microstructures presented above are the result of a kind of <a href="http://en.wikipedia.org/wiki/Reverse_Monte_Carlo">Reverse Monte-Carlo</a> simulation with a non-physical pairwise potential. The interaction potential is zero when the spheroids do not intersect, and repulsive when they do.
 </p>
 
 <p>

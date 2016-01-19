@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Review of "Learning Cython Programming"</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2016-01-18 Mon 09:03 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>Review of "Learning Cython Programming"</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -24,6 +25,10 @@
 <li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
 </ul>
 </div>
+<div id="titleblock">
+<p class="date">2014-01-26</p>
+<h1 class="title">Review of "Learning Cython Programming"</h1>
+</div>
 </div>
 <div id="content">
 <h1 class="title">Review of "Learning Cython Programming"</h1>
@@ -39,10 +44,8 @@ Let me first say that I am no expert in <a href="http://cython.org/">Cython</a> 
 The book is rather clear and short (the PDF file contains 110 pages), which can be attractive to absolute beginners. This also means that the book is not an in-depth presentation of the language and the possibility it offers. Very broadly speaking, there are two potential uses of Cython
 </p>
 <ul class="org-ul">
-<li>as a way to write C extensions/interface with pure C code,
-</li>
-<li>as a way to call the Python machinery from within pure C code.
-</li>
+<li>as a way to write C extensions/interface with pure C code,</li>
+<li>as a way to call the Python machinery from within pure C code.</li>
 </ul>
 
 <p>
@@ -82,10 +85,8 @@ In <b>chapter 3</b>, speed gets mentioned, albeit in a very superficial way. The
 To sum up, I would recommend this book only to those of you who have <i>never</i> used Cython. The moment you have written your first extension type in Cython, you no longer need this book, and you are probably better off with good resources available on the web (including the <a href="http://docs.cython.org/">official documentation</a> of course, a truly excellent tutorial session at <a href="http://conference.scipy.org/scipy2013/tutorial_detail.php?id=105">SciPy 2013</a> by Kurt Smith, and a <a href="http://blog.enthought.com/general/advanced-cython-recorded-webinar-typed-memoryviews/">webinar on memoryviews</a> by the same Kurt Smith). As far as I am concerned, I will not be able to draw much inspiration from <i>Learning Cython Programming</i>, although I certainly do not see myself as an advanced user of Cython. Still, I will keep a few sections in mind, in particular
 </p>
 <ul class="org-ul">
-<li><i>General Cython caveats</i>: for example, the C-like <code>for</code>-loop (see p. 58), which I was not aware of,
-</li>
-<li><i>Cython typing via annotations</i>: this might be useful to run such tools as <code>pep8</code> or <code>pylint</code> on Cython source files. Not sure it will work, but worth trying.
-</li>
+<li><i>General Cython caveats</i>: for example, the C-like <code>for</code>-loop (see p. 58), which I was not aware of,</li>
+<li><i>Cython typing via annotations</i>: this might be useful to run such tools as <code>pep8</code> or <code>pylint</code> on Cython source files. Not sure it will work, but worth trying.</li>
 </ul>
 
 <p>

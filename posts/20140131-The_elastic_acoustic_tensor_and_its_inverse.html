@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The elastic acoustic tensor and its inverse</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2016-01-18 Mon 09:03 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>The elastic acoustic tensor and its inverse</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -75,48 +76,28 @@ Stress: '\\stensii{\\Sigma}',
 'HTML-CSS': { availableFonts: ['TeX'] }
 });
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -134,10 +115,14 @@ Stress: '\\stensii{\\Sigma}',
 <li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
 </ul>
 </div>
+<div id="titleblock">
+<p class="date">2014-01-31</p>
+<h1 class="title">The elastic acoustic tensor and its inverse</h1>
+</div>
 </div>
 <div id="content">
 <h1 class="title">The elastic acoustic tensor and its inverse</h1>
-<div class="abstract">
+<div class="ABSTRACT">
 <p>
 In this post, I will introduce the acoustic tensor of linearly elastic materials. Closed-form expressions of the inverse of this tensor can be derived in the case of <i>isotropic</i> materials. This will later come in handy to derive closed-form expressions of the periodic Green operator for strains.
 </p>
@@ -154,7 +139,7 @@ We consider a linearly elastic material with stiffness \(\stiffness\). For any w
 \end{equation}
 
 <p>
-where \(k\) is the amplitude of the wave-vector \(\vec k\), \(k=\sqrt{\vec k\cdot\vec k}\), and \(\vec n\) is its direction (\(\vec k=k\vec n\)). The acoustic tensor is used to assess material stability (<a href="../pages/references.html#BIGO1994">Bigoni and Zaccaria, 1994</a>) and study the propagation of waves (<a href="../pages/references.html#GENT2013">Gentile and Straughan, 2013</a>). As far as we are concerned, the derivation of the periodic Green operator for strains will require the expressions of the inverse of the acoustic tensor<!-- TODO Insert hyperlink -->. This is the topic of the present post<!-- more -->, which is restricted to isotropic materials: the stiffness tensor \(\stiffness\) of isotropic materials is therefore a linear combination of the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">isotropic projection tensors</a> \(\sphprojiv,\devprojiv\)
+where \(k\) is the amplitude of the wave-vector \(\vec k\), \(k=\sqrt{\vec k\cdot\vec k}\), and \(\vec n\) is its direction (\(\vec k=k\vec n\)). The acoustic tensor is used to assess material stability (<a href="../pages/references.html#MissingReference">Bigoni and Zaccaria, 1994</a>) and study the propagation of waves (<a href="../pages/references.html#MissingReference">Gentile and Straughan, 2013</a>). As far as we are concerned, the derivation of the periodic Green operator for strains will require the expressions of the inverse of the acoustic tensor<!-- TODO Insert hyperlink -->. This is the topic of the present post<!-- more -->, which is restricted to isotropic materials: the stiffness tensor \(\stiffness\) of isotropic materials is therefore a linear combination of the <a href="./20140112-Elastic_constants_of_an_isotropic_material-03.html">isotropic projection tensors</a> \(\sphprojiv,\devprojiv\)
 </p>
 
 \begin{equation}

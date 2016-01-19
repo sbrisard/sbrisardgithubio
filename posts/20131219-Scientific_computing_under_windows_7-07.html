@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Scientific computing under Windows 7, part 7: ITK (proper)</title>
-<!-- 2015-07-01 Wed 09:05 -->
+<!-- 2016-01-18 Mon 09:03 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>Scientific computing under Windows 7, part 7: ITK (proper)</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -24,6 +25,10 @@
 <li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
 </ul>
 </div>
+<div id="titleblock">
+<p class="date">2013-12-19</p>
+<h1 class="title">Scientific computing under Windows 7, part 7: ITK (proper)</h1>
+</div>
 </div>
 <div id="content">
 <h1 class="title">Scientific computing under Windows 7, part 7: ITK (proper)</h1>
@@ -31,9 +36,9 @@
 In the <a href="./20131218-Scientific_computing_under_windows_7-06.html">previous installment</a> of this series, we installed all prerequisites for the ITK library. We are now ready to install the library itself, using CMake.<!-- more -->
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Retrieving the sources</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Retrieving the sources</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 Download the latest development version of ITK
 </p>
@@ -50,10 +55,8 @@ $ mkdir build
 You now have two different directories
 </p>
 <ul class="org-ul">
-<li><code>/C/src/ITK/src</code> contains the sources
-</li>
-<li><code>/C/src/ITK/build</code> is the place where the binaries are to be built.
-</li>
+<li><code>/C/src/ITK/src</code> contains the sources</li>
+<li><code>/C/src/ITK/build</code> is the place where the binaries are to be built.</li>
 </ul>
 
 <p>
@@ -67,27 +70,23 @@ This directory MUST NOT be inside the directory where you cloned the repository.
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Generating the <code>Makefile</code> with CMake</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Generating the <code>Makefile</code> with CMake</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 First, make sure that the following directories sit in your <code>PATH</code> environment variable (might need to be adapted)
 </p>
 <ul class="org-ul">
-<li>path to MinGW binaries, e.g. <code>C:\MinGW\bin</code>,
-</li>
-<li>path to MSYS binaries, e.g. <code>C:\MinGW\msys\1.0\bin</code>.
-</li>
+<li>path to MinGW binaries, e.g. <code>C:\MinGW\bin</code>,</li>
+<li>path to MSYS binaries, e.g. <code>C:\MinGW\msys\1.0\bin</code>.</li>
 </ul>
 
 <p>
 Then, launch the CMake GUI, and fill in the following fields
 </p>
 <ul class="org-ul">
-<li>where is the source code: <code>C:/src/ITK/src/</code>,
-</li>
-<li>where to build the binaries: <code>C:/src/ITK/build</code>.
-</li>
+<li>where is the source code: <code>C:/src/ITK/src/</code>,</li>
+<li>where to build the binaries: <code>C:/src/ITK/build</code>.</li>
 </ul>
 
 <p>
@@ -98,38 +97,22 @@ Uncheck "Grouped", and check "Advanced", then click "Configure". Select "MSYS Ma
 You must then tweak all entries in CMake until you are satisfied, then click "Generate" to produce the <code>Makefile</code>. As far as I am concerned, I had to change the following options
 </p>
 <ul class="org-ul">
-<li><code>BUILD_DOCUMENTATION:BOOL=OFF</code>
-</li>
-<li><code>BUILD_EXAMPLES:BOOL=OFF</code>
-</li>
-<li><code>BUILD_SHARED_LIBS:BOOL=OFF</code>
-</li>
-<li><code>BUILD_TESTING:BOOL=OFF</code>
-</li>
-<li><code>CMAKE_INSTALL_PREFIX:PATH=C:/opt/ITK</code>
-</li>
-<li><code>GITCOMMAND:FILEPATH=C:/Program Files (x86)/Git/bin/git.exe</code>
-</li>
-<li><code>ITK_BUILD_DEFAULT_MODULES:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_FFTWD:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_FFTWF:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_FFTW:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_HDF5:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_JPEG:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_PNG:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_TIFF:BOOL=ON</code>
-</li>
-<li><code>ITK_USE_SYSTEM_ZLIB:BOOL=ON</code>
-</li>
-<li><code>ITK_WRAPPING:BOOL=OFF</code>
-</li>
+<li><code>BUILD_DOCUMENTATION:BOOL=OFF</code></li>
+<li><code>BUILD_EXAMPLES:BOOL=OFF</code></li>
+<li><code>BUILD_SHARED_LIBS:BOOL=OFF</code></li>
+<li><code>BUILD_TESTING:BOOL=OFF</code></li>
+<li><code>CMAKE_INSTALL_PREFIX:PATH=C:/opt/ITK</code></li>
+<li><code>GITCOMMAND:FILEPATH=C:/Program Files (x86)/Git/bin/git.exe</code></li>
+<li><code>ITK_BUILD_DEFAULT_MODULES:BOOL=ON</code></li>
+<li><code>ITK_USE_FFTWD:BOOL=ON</code></li>
+<li><code>ITK_USE_FFTWF:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_FFTW:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_HDF5:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_JPEG:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_PNG:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_TIFF:BOOL=ON</code></li>
+<li><code>ITK_USE_SYSTEM_ZLIB:BOOL=ON</code></li>
+<li><code>ITK_WRAPPING:BOOL=OFF</code></li>
 </ul>
 
 <p>
@@ -137,20 +120,13 @@ Please note that SimpleITK (which I intended to compile and use) requires static
 </p>
 
 <ul class="org-ul">
-<li><code>FFTWD_LIB:FILEPATH=C:/MinGW/bin/libfftw3-3.dll</code>
-</li>
-<li><code>FFTWD_THREADS_LIB:FILEPATH=C:/MinGW/bin/libfftw3-3.dll</code>
-</li>
-<li><code>FFTWF_LIB:FILEPATH=C:/MinGW/bin/libfftw3f-3.dll</code>
-</li>
-<li><code>FFTWF_THREADS_LIB:FILEPATH=C:/MinGW/bin/libfftw3f-3.dll</code>
-</li>
-<li><code>FFTW_INCLUDE_PATH:PATH=C:/MinGW/include</code>
-</li>
-<li><code>ZLIB_INCLUDE_DIR:PATH=C:/MinGW/include</code>
-</li>
-<li><code>ZLIB_LIBRARY:FILEPATH=C:/MinGW/bin/zlib1.dll</code>
-</li>
+<li><code>FFTWD_LIB:FILEPATH=C:/MinGW/bin/libfftw3-3.dll</code></li>
+<li><code>FFTWD_THREADS_LIB:FILEPATH=C:/MinGW/bin/libfftw3-3.dll</code></li>
+<li><code>FFTWF_LIB:FILEPATH=C:/MinGW/bin/libfftw3f-3.dll</code></li>
+<li><code>FFTWF_THREADS_LIB:FILEPATH=C:/MinGW/bin/libfftw3f-3.dll</code></li>
+<li><code>FFTW_INCLUDE_PATH:PATH=C:/MinGW/include</code></li>
+<li><code>ZLIB_INCLUDE_DIR:PATH=C:/MinGW/include</code></li>
+<li><code>ZLIB_LIBRARY:FILEPATH=C:/MinGW/bin/zlib1.dll</code></li>
 </ul>
 
 <p>
@@ -161,20 +137,13 @@ Please note that SimpleITK (which I intended to compile and use) requires static
 Then, set the following options
 </p>
 <ul class="org-ul">
-<li><code>HDF5_DIR:PATH=C:/opt/HDF5-1.8.12/cmake/hdf5</code>
-</li>
-<li><code>JPEG_INCLUDE_DIR:PATH=C:/MinGW/include</code>
-</li>
-<li><code>JPEG_LIBRARY:FILEPATH=C:/MinGW/bin/libjpeg-9.dll</code>
-</li>
-<li><code>TIFF_INCLUDE_DIR:PATH=C:/MinGW/include</code>
-</li>
-<li><code>TIFF_LIBRARY:FILEPATH=C:/MinGW/bin/libtiff-5.dll</code>
-</li>
-<li><code>PNG_LIBRARY:FILEPATH=C:/MinGW/bin/libpng16-16.dll</code>
-</li>
-<li><code>PNG_PNG_INCLUDE_DIR:PATH=C:/MinGW/include</code>
-</li>
+<li><code>HDF5_DIR:PATH=C:/opt/HDF5-1.8.12/cmake/hdf5</code></li>
+<li><code>JPEG_INCLUDE_DIR:PATH=C:/MinGW/include</code></li>
+<li><code>JPEG_LIBRARY:FILEPATH=C:/MinGW/bin/libjpeg-9.dll</code></li>
+<li><code>TIFF_INCLUDE_DIR:PATH=C:/MinGW/include</code></li>
+<li><code>TIFF_LIBRARY:FILEPATH=C:/MinGW/bin/libtiff-5.dll</code></li>
+<li><code>PNG_LIBRARY:FILEPATH=C:/MinGW/bin/libpng16-16.dll</code></li>
+<li><code>PNG_PNG_INCLUDE_DIR:PATH=C:/MinGW/include</code></li>
 </ul>
 
 <p>
@@ -183,9 +152,9 @@ Once your are satisfied with all options, click "Generate" to produce the <code>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Compiling the library</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Compiling the library</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 In the MSYS console
 </p>
@@ -262,16 +231,11 @@ with
 </p>
 
 <ul class="org-ul">
-<li><code>filename</code> : file name
-</li>
-<li><code>oflag</code> : type of operations allowed
-</li>
-<li><code>shflag</code> : type of sharing allowed
-</li>
-<li><code>pmode</code> permission setting (optional),
-</li>
-<li>Returns : the file descriptor.
-</li>
+<li><code>filename</code> : file name</li>
+<li><code>oflag</code> : type of operations allowed</li>
+<li><code>shflag</code> : type of sharing allowed</li>
+<li><code>pmode</code> permission setting (optional),</li>
+<li>Returns : the file descriptor.</li>
 </ul>
 
 <p>
@@ -293,16 +257,11 @@ with
 </p>
 
 <ul class="org-ul">
-<li><code>pfh</code> : the file handle, or -1 in the case of an error,
-</li>
-<li><code>filename</code> : file name,
-</li>
-<li><code>oflag</code> : type of operations allowed,
-</li>
-<li><code>shflag</code> : type of sharing allowed,
-</li>
-<li><code>pmode</code> permission setting.
-</li>
+<li><code>pfh</code> : the file handle, or -1 in the case of an error,</li>
+<li><code>filename</code> : file name,</li>
+<li><code>oflag</code> : type of operations allowed,</li>
+<li><code>shflag</code> : type of sharing allowed,</li>
+<li><code>pmode</code> permission setting.</li>
 </ul>
 
 <p>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>When a thin shell is not so thin, part&nbsp;1: Koiter's linear theory</title>
-<!-- 2015-07-01 Wed 12:48 -->
+<!-- 2016-01-18 Mon 09:03 -->
 <meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>When a thin shell is not so thin, part&nbsp;1: Koiter's linear theory</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -75,48 +76,28 @@ Stress: '\\stensii{\\Sigma}',
 'HTML-CSS': { availableFonts: ['TeX'] }
 });
 </script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "2em",
+        displayIndent: "0em",
 
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
              }
-        }
-    });
-/*]]>*///-->
+});
 </script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -134,6 +115,10 @@ Stress: '\\stensii{\\Sigma}',
 <li><a href="../feed.xml" title="RSS"><span class="fa fa-rss"></span></a></li>
 </ul>
 </div>
+<div id="titleblock">
+<p class="date">2015-06-08</p>
+<h1 class="title">When a thin shell is not so thin, part&nbsp;1: Koiter's linear theory</h1>
+</div>
 </div>
 <div id="content">
 <h1 class="title">When a thin shell is not so thin, part&nbsp;1: Koiter's linear theory</h1>
@@ -142,12 +127,12 @@ In structural analysis, thick beams (resp. plates) usually refer to shear deform
 </p>
 
 <p>
-In the first part of this series, Koiter's thin shell theory (<a href="../pages/references.html#KOIT1970">Koiter, 1970</a>) is used to analyse the equilibrium of the spherical pressure vessel. In particular, it is shown that the results deviate slightly from what is expected from the membrane theory.
+In the first part of this series, Koiter's thin shell theory (<a href="../pages/references.html#MissingReference">Koiter, 1970</a>) is used to analyse the equilibrium of the spherical pressure vessel. In particular, it is shown that the results deviate slightly from what is expected from the membrane theory.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Description of the problem</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgheadline1" class="outline-2">
+<h2 id="orgheadline1">Description of the problem</h2>
+<div class="outline-text-2" id="text-orgheadline1">
 <p>
 We consider a spherical vessel, subjected to an internal pressure \(p\). \(R\) denotes the radius of the midsurface, \(h\) the thickness of the shell, so that the inner and outer radii of the shell are
 </p>
@@ -168,14 +153,14 @@ M_{\theta\theta}&=M,&M_{\phi\phi}&=M,&M_{\theta\phi}&=0,
 \end{align}
 
 <p>
-where \(\epsilon\), \(\kappa\), \(N\) and \(M\) are four scalar constants, which will be determined in the next section by means of Koiter's linear theory of thin shells (<a href="../pages/references.html#KOIT1970">Koiter, 1970</a>).
+where \(\epsilon\), \(\kappa\), \(N\) and \(M\) are four scalar constants, which will be determined in the next section by means of Koiter's linear theory of thin shells (<a href="../pages/references.html#MissingReference">Koiter, 1970</a>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">The thin shell solution</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">The thin shell solution</h2>
+<div class="outline-text-2" id="text-orgheadline2">
 <p>
 Up to terms which are quadratic in the displacement, the trace of the tensor of membrane strains is equal to the relative variation of surface area of the shell. Therefore
 </p>
@@ -185,7 +170,7 @@ Up to terms which are quadratic in the displacement, the trace of the tensor of 
 \end{equation}
 
 <p>
-There is no simple geometrical derivation that I know of for the determination of the change of curvature, and you will have to trust me on this [&#x2026; or use Eq. (3.4) in the paper by Koiter (<a href="../pages/references.html#KOIT1970">1970</a>)]
+There is no simple geometrical derivation that I know of for the determination of the change of curvature, and you will have to trust me on this [&#x2026; or use Eq. (3.4) in the paper by Koiter (<a href="../pages/references.html#MissingReference">1970</a>)]
 </p>
 
 \begin{equation}
@@ -250,7 +235,7 @@ and similarly for the stress couples
 \end{equation}
 
 <p>
-<a id="Koiter_solution" name="Koiter_solution"></a>Substituting Eqs.\eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} in Eqs. \eqref{eq:4} and \eqref{eq:5} finally leads to the following expansions
+<a id="orgtarget1"></a>Substituting Eqs.\eqref{eq:1}, \eqref{eq:2} and \eqref{eq:3} in Eqs. \eqref{eq:4} and \eqref{eq:5} finally leads to the following expansions
 </p>
 
 \begin{align}
@@ -268,9 +253,9 @@ Nota: the above-mentioned formula \(N=pR/2\) is called "formule des chaudronnier
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">Conclusion</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">Conclusion</h2>
+<div class="outline-text-2" id="text-orgheadline3">
 <p>
 We started with a very simple shell, which we expected to be in a state of membrane equilibrium. However, using Koiter's linear theory of thin shells, we found that the stress couples, though small, are not null!
 </p>
