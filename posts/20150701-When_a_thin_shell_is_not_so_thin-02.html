@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 2016-01-18 Mon 09:03 -->
+<!-- 2016-01-28 Thu 07:49 -->
 <meta  charset="utf-8">
 <meta  name="viewport" content="width=device-width, initial-scale=1">
 <title>When a thin shell is not so thin, part&nbsp;2: the 3D, exact solution</title>
 <meta  name="generator" content="Org-mode">
 <meta  name="author" content="Sébastien Brisard">
-<link rel="stylesheet" href="../theme.css"/><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../theme.css"/>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
 <script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'>
 MathJax.Hub.Config({
@@ -130,7 +131,7 @@ In the <a href="./20150608-When_a_thin_shell_is_not_so_thin-01.html">previous in
 <h2 id="orgheadline1">The spherical pressure vessel, exact solution</h2>
 <div class="outline-text-2" id="text-orgheadline1">
 <p>
-Finding the stresses and displacements in a pressure vessel is a classical exercise in 3D linear elasticity. In this post, I will spare you the details of the derivation (which can be found in e.g. <a href="../pages/references.html#MissingReference">Timoshenko and Goodier, 1951</a>, art. 121). Instead, I will come straight to the point, and provide you with the exact expression of the stress tensor in spherical coordinates (\(r\): distance to the center of the spherical pressure vessel)
+Finding the stresses and displacements in a pressure vessel is a classical exercise in 3D linear elasticity. In this post, I will spare you the details of the derivation (which can be found in e.g. <a href="../pages/references.html#orgtarget16">Timoshenko and Goodier, 1951</a>, art. 121). Instead, I will come straight to the point, and provide you with the exact expression of the stress tensor in spherical coordinates (\(r\): distance to the center of the spherical pressure vessel)
 </p>
 
 \begin{gather}
@@ -148,7 +149,7 @@ B&=-\frac12\frac{\left(p_\text{ext}-p_\text{int}\right)R_\text{int}^3R_\text{ext
 \end{align}
 
 <p>
-where \(R_\text{int}=R-h/2\) and \(R_\text{ext}=R+h/2\) denote the internal and external radii of the spherical pressure vessel (\(R\): radius of midsurface, \(h\): thickness); \(p_\text{int}\) and \(p_\text{ext}\) denote the internal and external pressures. To make a fair comparison between the shell theory and the 3D exact solution, it is customary to share the load equally between the upper and lower faces (see e.g. <a href="../pages/references.html#MissingReference">Reissner, 1947</a>). In other words,
+where \(R_\text{int}=R-h/2\) and \(R_\text{ext}=R+h/2\) denote the internal and external radii of the spherical pressure vessel (\(R\): radius of midsurface, \(h\): thickness); \(p_\text{int}\) and \(p_\text{ext}\) denote the internal and external pressures. To make a fair comparison between the shell theory and the 3D exact solution, it is customary to share the load equally between the upper and lower faces (see e.g. <a href="../pages/references.html#orgtarget14">Reissner, 1947</a>). In other words,
 </p>
 
 \begin{equation}
@@ -173,7 +174,7 @@ From Eq. \eqref{eq:2}, we readily find the following expressions of the stress r
 \end{align}
 
 <p>
-Comparing with <a href="./20150608-When_a_thin_shell_is_not_so_thin-01.html#MissingReference">Koiter's solution</a>, it is found that the dominant terms of the stress resultant coincide. This is not true of the stress couple, though. Even worse, the signs differ! While in Koiter's solution, the stress couple is negative (as expected), integration of the 3D solution leads to a <i>positive</i> stress couple, which is unphysical. Something nasty is definitely taking place, here!
+Comparing with <a href="./20150608-When_a_thin_shell_is_not_so_thin-01.html#orgtarget1">Koiter's solution</a>, it is found that the dominant terms of the stress resultant coincide. This is not true of the stress couple, though. Even worse, the signs differ! While in Koiter's solution, the stress couple is negative (as expected), integration of the 3D solution leads to a <i>positive</i> stress couple, which is unphysical. Something nasty is definitely taking place, here!
 </p>
 
 <p>
