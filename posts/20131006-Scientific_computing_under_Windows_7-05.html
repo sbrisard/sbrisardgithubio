@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 2016-01-28 Thu 07:49 -->
+<!-- 2016-02-19 Fri 12:09 -->
 <meta  charset="utf-8">
 <meta  name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific computing under Windows 7, part 5: LAMMPS</title>
@@ -60,7 +60,7 @@ EXE =       $(ROOT)_$@.exe
 </pre>
 
 <p>
-Then create an appropriate <code>Makefile.mingw32</code>, starting from <code>Makefile.serial</code>. In the MSYS console::
+Then create an appropriate <code>Makefile.mingw32</code>, starting from <code>Makefile.serial</code>. In the MSYS console
 </p>
 
 <pre class="example">
@@ -88,7 +88,7 @@ make: `stubs' is up to date.
 </pre>
 
 <p>
-The solution is to force compilation of the stubs::
+The solution is to force compilation of the stubs
 </p>
 
 <pre class="example">
@@ -97,7 +97,7 @@ $ make
 </pre>
 
 <p>
-which produces a file <code>libmpi_stubs.a</code>. You are now ready to compile::
+which produces a file <code>libmpi_stubs.a</code>. You are now ready to compile
 </p>
 
 <pre class="example">
@@ -106,7 +106,7 @@ $ make mingw32
 </pre>
 
 <p>
-which produces an executable <code>src/lmp_mingw32.exe</code>. To test this executable, go to the <code>examples</code> directory::
+which produces an executable <code>src/lmp_mingw32.exe</code>. To test this executable, go to the <code>examples</code> directory
 </p>
 
 <pre class="example">
@@ -114,7 +114,7 @@ $ cd /C/src/lammps-30Sep13/examples
 </pre>
 
 <p>
-and run one of the applications, for example::
+and run one of the applications, for example
 </p>
 
 <pre class="example">
