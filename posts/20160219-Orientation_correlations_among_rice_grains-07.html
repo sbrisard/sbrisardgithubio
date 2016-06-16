@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 2016-02-19 Fri 12:08 -->
+<!-- 2016-06-13 Mon 09:12 -->
 <meta  charset="utf-8">
 <meta  name="viewport" content="width=device-width, initial-scale=1">
 <title>Orientation correlations among rice grains, part 7: analysis of the shape of the grains</title>
@@ -542,7 +542,10 @@ We can now proceed with the analysis of the results. This will be done more thor
 <div class="org-src-container">
 
 <pre class="src src-ipython"><span class="org-keyword">with</span> h5py.File(filename, <span class="org-string">'r+'</span>) <span class="org-keyword">as</span> f:
-    <span class="org-variable-name">f</span>[<span class="org-string">'orientation'</span>] = n
+    <span class="org-variable-name">f</span>[<span class="org-string">'volume'</span>] = vol
+    <span class="org-variable-name">f</span>[<span class="org-string">'center_of_mass'</span>] = com
+    <span class="org-variable-name">f</span>[<span class="org-string">'radii'</span>] = radius
+    <span class="org-comment-delimiter">#</span><span class="org-comment">f['orientation'] = n</span>
 </pre>
 </div>
 </div>
