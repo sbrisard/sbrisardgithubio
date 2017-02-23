@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- 2016-06-27 Mon 14:15 -->
-<meta  charset="utf-8">
-<meta  name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2017-02-23 Thu 09:05 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orientation correlations among rice grains, part 7: analysis of the shape of the grains</title>
-<meta  name="generator" content="Org-mode">
-<meta  name="author" content="Sébastien Brisard">
+<meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
@@ -205,7 +205,6 @@ As usual, we will use Python to carry out the dirty work. We will start with a <
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-keyword">import</span> os.path
 
 <span class="org-keyword">import</span> h5py
@@ -227,20 +226,19 @@ plt.style.use(<span class="org-string">'../include/zenburn-light.mplstyle'</span
 </pre>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="morphological_description"><a id="orgheadline3"></a>Morphological description of the grains</h2>
+<div id="outline-container-org74e5e0d" class="outline-2">
+<h2 id="morphological_description"><a id="org74e5e0d"></a>Morphological description of the grains</h2>
 <div class="outline-text-2" id="text-morphological_description">
 </div>
 
-<div id="outline-container-orgheadline1" class="outline-3">
-<h3 id="direct_computation"><a id="orgheadline1"></a>Direct computation of the morphological parameters of grain 42</h3>
+<div id="outline-container-org75098f6" class="outline-3">
+<h3 id="direct_computation"><a id="org75098f6"></a>Direct computation of the morphological parameters of grain 42</h3>
 <div class="outline-text-3" id="text-direct_computation">
 <p>
 The direct (naive) approach presented in this section will serve as a reference for a <a href="#using_sum">better approach</a> presented in the next section. It will be illustrated on one grain only (namely grain <a href="https://en.wikipedia.org/wiki/42_%28number%29#The_Hitchhiker.27s_Guide_to_the_Galaxy">42</a>), which we first locate. The remainder of the analysis is then restricted to a ROI surrounding the selected grain.
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">index</span> = 42
 <span class="org-variable-name">slices</span> = scipy.ndimage.find_objects(labels)[index-1]
 <span class="org-variable-name">roi</span> = labels[slices]
@@ -252,7 +250,6 @@ The grain shape is then defined by <code>mask</code>, an array of booleans, wher
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">mask</span> = roi == index
 </pre>
 </div>
@@ -262,7 +259,6 @@ The volume (in voxels) of the grain is the sum of the above array
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">vol_ref</span> = mask.<span class="org-builtin">sum</span>()
 <span class="org-keyword">print</span>(<span class="org-string">'Volume of grain {} = {} vox^3.'</span>.<span class="org-builtin">format</span>(index, vol_ref))
 </pre>
@@ -277,7 +273,6 @@ To compute the center of mass and inertia of the grain, we must define the coord
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">coords</span> = np.mgrid[slices].astype(np.float64)
 </pre>
 </div>
@@ -287,7 +282,6 @@ The center of mass of the grain is the sum of these coordinates divided by the t
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">com_ref</span> = np.<span class="org-builtin">sum</span>(mask*coords, axis=(-1, -2, -3))/vol_ref
 <span class="org-keyword">print</span>(<span class="org-string">'Center of mass of grain {} = {} vox'</span>.<span class="org-builtin">format</span>(index, com_ref))
 </pre>
@@ -302,7 +296,6 @@ Note that we pre-multiplied <code>coords</code> by <code>mask</code> in order to
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">coords</span> -= com_ref[:, <span class="org-constant">None</span>, <span class="org-constant">None</span>, <span class="org-constant">None</span>]
 </pre>
 </div>
@@ -320,7 +313,6 @@ coords_xprod[m, n, i, j, k] = coords[m, i, j, k]*coords[n, i, j, k]
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">coords_xprod</span> = coords[<span class="org-constant">None</span>, ...]*coords[:, <span class="org-constant">None</span>, ...]
 </pre>
 </div>
@@ -330,7 +322,6 @@ and we find
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">moments2_ref</span> = np.<span class="org-builtin">sum</span>(mask*coords_xprod, axis=(-1, -2,-3))
 <span class="org-keyword">print</span>(<span class="org-string">'Moments of inertia of grain {} (vox^5)'</span>.<span class="org-builtin">format</span>(index))
 <span class="org-keyword">print</span>(moments2_ref)
@@ -350,8 +341,8 @@ This is a bit tedious, isn't it? Besides, we should normally loop over the grain
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="using_sum"><a id="orgheadline2"></a>Using the <code>scipy.ndimage.sum</code> function</h3>
+<div id="outline-container-org2d0b673" class="outline-3">
+<h3 id="using_sum"><a id="org2d0b673"></a>Using the <code>scipy.ndimage.sum</code> function</h3>
 <div class="outline-text-3" id="text-using_sum">
 <p>
 This function will allow us to carry out the analysis over all grains simultaneously. We start with the volume, which is seen as
@@ -366,7 +357,6 @@ where the sum is carried over all voxels of each grain.
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">ones</span> = np.ones_like(labels, dtype=np.float64)
 <span class="org-variable-name">vol</span> = scipy.ndimage.<span class="org-builtin">sum</span>(ones, labels, indices)
 </pre>
@@ -377,7 +367,6 @@ And we can check that the value we found for grain 42 is correct
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-keyword">print</span>(<span class="org-string">'Volume of grain {}'</span>.<span class="org-builtin">format</span>(index))
 <span class="org-keyword">print</span>(<span class="org-string">'    expected   = {}'</span>.<span class="org-builtin">format</span>(vol_ref))
 <span class="org-keyword">print</span>(<span class="org-string">'    actual     = {}'</span>.<span class="org-builtin">format</span>(vol[index-1]))
@@ -395,7 +384,6 @@ For the center of mass, we will use the <a href="http://docs.scipy.org/doc/scipy
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">com</span> = np.asarray(scipy.ndimage.center_of_mass(ones, labels, indices))
 <span class="org-keyword">print</span>(<span class="org-string">'Center of mass of grain {}'</span>.<span class="org-builtin">format</span>(index))
 <span class="org-keyword">print</span>(<span class="org-string">'    expected   = {}'</span>.<span class="org-builtin">format</span>(com_ref))
@@ -422,8 +410,7 @@ where the last identity is known as the <a href="https://en.wikipedia.org/wiki/P
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-ipython" id="orgsrcblock1"><span class="org-variable-name">coords</span> = np.mgrid[[<span class="org-builtin">slice</span>(n) <span class="org-keyword">for</span> n <span class="org-keyword">in</span> labels.shape]]
+<pre class="src src-ipython" id="orgf8583f3"><span class="org-variable-name">coords</span> = np.mgrid[[<span class="org-builtin">slice</span>(n) <span class="org-keyword">for</span> n <span class="org-keyword">in</span> labels.shape]]
 <span class="org-variable-name">moments2</span> = np.empty((indices.size, 3, 3), dtype=np.float64)
 
 <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-builtin">range</span>(3):
@@ -443,7 +430,6 @@ We can again check that the result is correct for grain 42.
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-keyword">print</span>(<span class="org-string">'Second moments of grain {}'</span>.<span class="org-builtin">format</span>(index))
 <span class="org-keyword">print</span>(<span class="org-string">'    expected ='</span>)
 <span class="org-keyword">print</span>(moments2_ref)
@@ -469,7 +455,6 @@ That's it! We have computed the second moments of each grain. See how this <code
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">moments2_eigvals</span>, <span class="org-variable-name">moments2_eigvecs</span> = np.linalg.eig(moments2)
 </pre>
 </div>
@@ -479,7 +464,6 @@ It turns out that some of the eigenvalues that are found are negative (which is 
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">i</span> = np.nonzero(moments2_eigvals &lt; 0)
 <span class="org-keyword">print</span>(i)
 </pre>
@@ -494,7 +478,6 @@ However, these eigenvalues are very small
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-keyword">print</span>(moments2_eigvals[i])
 </pre>
 </div>
@@ -508,7 +491,6 @@ and we set them to zero
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">moments2_eigvals</span>[i] = 0
 </pre>
 </div>
@@ -518,7 +500,6 @@ The <i>orientation</i> \(\vec n\) of the grain is defined as the eigenvector ass
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">i</span> = np.argmax(moments2_eigvals, axis=1)
 <span class="org-variable-name">rows</span> = moments2.shape[0]
 <span class="org-variable-name">n</span> = moments2_eigvecs[np.arange(rows), 0:3, i]
@@ -530,7 +511,6 @@ The following code snippet computes the radii of each grain, and sorts them in a
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">radius</span> = np.sort(np.sqrt(5*moments2_eigvals/vol[:, <span class="org-constant">None</span>]))
 </pre>
 </div>
@@ -540,7 +520,6 @@ We can now proceed with the analysis of the results. This will be done more thor
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-keyword">with</span> h5py.File(filename, <span class="org-string">'r+'</span>) <span class="org-keyword">as</span> f:
     <span class="org-variable-name">f</span>[<span class="org-string">'volume'</span>] = vol
     <span class="org-variable-name">f</span>[<span class="org-string">'center_of_mass'</span>] = com
@@ -552,14 +531,13 @@ We can now proceed with the analysis of the results. This will be done more thor
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-2">
-<h2 id="orgheadline7">Analysis of the results</h2>
-<div class="outline-text-2" id="text-orgheadline7">
-</div><div id="outline-container-orgheadline4" class="outline-3">
-<h3 id="orgheadline4">Volume of grains</h3>
-<div class="outline-text-3" id="text-orgheadline4">
+<div id="outline-container-orgd199cb1" class="outline-2">
+<h2 id="orgd199cb1">Analysis of the results</h2>
+<div class="outline-text-2" id="text-orgd199cb1">
+</div><div id="outline-container-org164d920" class="outline-3">
+<h3 id="org164d920">Volume of grains</h3>
+<div class="outline-text-3" id="text-org164d920">
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> = plt.subplots()
 ax.set_xlabel(u<span class="org-string">'V (vox&#179;)'</span>)
 ax.set_ylabel(<span class="org-string">'Number'</span>)
@@ -589,15 +567,14 @@ My guess is that it is in fact a little bit of both. One possible remedy would b
 </div>
 </div>
 
-<div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Size of the grains</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-org9dee069" class="outline-3">
+<h3 id="org9dee069">Size of the grains</h3>
+<div class="outline-text-3" id="text-org9dee069">
 <p>
 In this section we visualize the radii of the equivalent ellipsoids
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> = plt.subplots()
 ax.hist(radius[:, -1], <span class="org-builtin">range</span>=(0, 40), bins=40, linewidth=0)
 ax.set_xlabel(<span class="org-string">'a (vox)'</span>)
@@ -630,9 +607,9 @@ The length of most grains is about 2×27=54 pixels (about 6.5 mm). Also, the gra
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Orientation of grains</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-org868678f" class="outline-3">
+<h3 id="org868678f">Orientation of grains</h3>
+<div class="outline-text-3" id="text-org868678f">
 <p>
 This will be the topic of the next instalment of this series. We will only check for possible anisotropy by analysing the following second-order orientation tensor: \(\langle\vec n\otimes\vec n\rangle\), where angle brackets stand for ensemble average. It can readily be verified that for isotropic distributions, this tensor is diagonal
 </p>
@@ -652,7 +629,6 @@ Any deviation from this diagonal tensor indicates anisotropy (the converse is <i
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-ipython"><span class="org-variable-name">nn</span> = n[:, <span class="org-constant">None</span>, :]*n[:, :, <span class="org-constant">None</span>]
 <span class="org-variable-name">nn_avg</span> = nn.mean(axis=0)
 <span class="org-keyword">print</span>(nn_avg)
@@ -672,9 +648,9 @@ Which shows that the distribution of grains is <i>not</i> isotropic. Analysis of
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-2">
-<h2 id="orgheadline8">Conclusion</h2>
-<div class="outline-text-2" id="text-orgheadline8">
+<div id="outline-container-org4c182dd" class="outline-2">
+<h2 id="org4c182dd">Conclusion</h2>
+<div class="outline-text-2" id="text-org4c182dd">
 <p>
 In this post, we have analysed the orientation of each grain. The orientation was defined as the orientation of the major axis of the equivalent ellipsoid. We are now ready to analyse orientation correlations among rice grains, which will be the topic of the next instalment.
 </p>

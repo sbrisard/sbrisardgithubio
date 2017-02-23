@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- 2016-06-27 Mon 14:15 -->
-<meta  charset="utf-8">
-<meta  name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2017-02-23 Thu 09:05 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scientific computing under Windows 7, part 7: ITK (proper)</title>
-<meta  name="generator" content="Org-mode">
-<meta  name="author" content="Sébastien Brisard">
+<meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
@@ -37,9 +37,9 @@
 In the <a href="./20131218-Scientific_computing_under_windows_7-06.html">previous installment</a> of this series, we installed all prerequisites for the ITK library. We are now ready to install the library itself, using CMake.<!-- more -->
 </p>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Retrieving the sources</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-org2f13deb" class="outline-2">
+<h2 id="org2f13deb">Retrieving the sources</h2>
+<div class="outline-text-2" id="text-org2f13deb">
 <p>
 Download the latest development version of ITK
 </p>
@@ -71,9 +71,9 @@ This directory MUST NOT be inside the directory where you cloned the repository.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Generating the <code>Makefile</code> with CMake</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-org13d5b28" class="outline-2">
+<h2 id="org13d5b28">Generating the <code>Makefile</code> with CMake</h2>
+<div class="outline-text-2" id="text-org13d5b28">
 <p>
 First, make sure that the following directories sit in your <code>PATH</code> environment variable (might need to be adapted)
 </p>
@@ -153,9 +153,9 @@ Once your are satisfied with all options, click "Generate" to produce the <code>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Compiling the library</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-org75af813" class="outline-2">
+<h2 id="org75af813">Compiling the library</h2>
+<div class="outline-text-2" id="text-org75af813">
 <p>
 In the MSYS console
 </p>
@@ -219,7 +219,6 @@ The fix is to replace <code>_sopen_s()</code> with <code>_sopen()</code>, but th
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-C"><span class="org-type">int</span> <span class="org-function-name">_sopen</span>(<span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">filename</span>,
            <span class="org-type">int</span> <span class="org-variable-name">oflag</span>,
            <span class="org-type">int</span> <span class="org-variable-name">shflag</span>,
@@ -244,7 +243,6 @@ On the other hand, from <a href="http://msdn.microsoft.com/en-us/library/w64k0yt
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-C"><span class="org-type">errno_t</span> <span class="org-function-name">_sopen_s</span>(<span class="org-type">int</span>* <span class="org-variable-name">pfh</span>,
                  <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">filename</span>,
                  <span class="org-type">int</span> <span class="org-variable-name">oflag</span>,
@@ -270,7 +268,6 @@ Therefore, in the file <code>C:\src\ITK\src\Modules\Filtering\FFT\src\itkFFTWGlo
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-C"><span class="org-type">int</span>  <span class="org-variable-name">fd</span>;
 <span class="org-keyword">if</span> ( <span class="org-negation-char">!</span>_sopen_s( &amp;fd, path.c_str(), _O_RDONLY, _SH_DENYNO, _S_IREAD))
 </pre>
@@ -281,7 +278,6 @@ with
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-C"><span class="org-type">int</span>  <span class="org-variable-name">fd</span>;
 fd = _sopen(path.c_str(), _O_RDONLY, _SH_DENYNO, _S_IREAD);
 <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>fd)
@@ -324,7 +320,6 @@ To conform with the definition of <code>DllMain</code> found in <code>C:\MinGW\i
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-c"><span class="org-function-name">DllMain</span>(<span class="org-type">HANDLE</span> <span class="org-variable-name">hModule</span>, <span class="org-type">DWORD</span> <span class="org-variable-name">ul_reason_for_call</span>, <span class="org-type">LPVOID</span> <span class="org-variable-name">lpReserved</span>) {
 </pre>
 </div>
@@ -334,7 +329,6 @@ with
 </p>
 
 <div class="org-src-container">
-
 <pre class="src src-c"><span class="org-function-name">DllMain</span>(<span class="org-type">HINSTANCE</span> <span class="org-variable-name">hModule</span>, <span class="org-type">DWORD</span> <span class="org-variable-name">ul_reason_for_call</span>, <span class="org-type">LPVOID</span> <span class="org-variable-name">lpReserved</span>) {
 </pre>
 </div>
