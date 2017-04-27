@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-04-26 Wed 14:29 -->
+<!-- 2017-04-27 Thu 06:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LaTeX: a bug with subequations</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
@@ -42,18 +43,18 @@ While working on my latest paper, I've come accross what looks like a bug with t
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">document</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
-<span class="org-font-latex-math">  a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math">-b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> = (a-b)(a+b)</span>
+<span class="org-font-latex-math">  a^2-b^2 = (a-b)(a+b)</span>
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">subequations</span>}
   <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">align</span>}
-<span class="org-font-latex-math">    (a + b)</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> + 2ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
-<span class="org-font-latex-math">    (a - b)</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> - 2ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span>
+<span class="org-font-latex-math">    (a + b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 + 2ab + b^2</span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
+<span class="org-font-latex-math">    (a - b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 - 2ab + b^2</span>
 <span class="org-font-latex-math">  </span><span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">align</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">subequations</span>}
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
-<span class="org-font-latex-math">  a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^3</span></span><span class="org-font-latex-math"> - b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^3</span></span><span class="org-font-latex-math"> = (a - b)(a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> + ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math">)</span>
+<span class="org-font-latex-math">  a^3 - b^3 = (a - b)(a^2 + ab + b^2)</span>
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">document</span>}
 </pre>
@@ -79,18 +80,18 @@ Now, assume that Eqs. (2a) and (2b) are never referred to; then the equation num
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">document</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
-<span class="org-font-latex-math">  a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math">-b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> = (a-b)(a+b)</span>
+<span class="org-font-latex-math">  a^2-b^2 = (a-b)(a+b)</span>
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">subequations</span>}
   <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">align*</span>}
-<span class="org-font-latex-math">    (a + b)</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> + 2ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
-<span class="org-font-latex-math">    (a - b)</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> - 2ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span>
+<span class="org-font-latex-math">    (a + b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 + 2ab + b^2</span><span class="org-font-latex-math"><span class="org-font-latex-warning">\\</span></span>
+<span class="org-font-latex-math">    (a - b)^2 </span><span class="org-font-latex-math"><span class="org-font-latex-warning">&amp;</span></span><span class="org-font-latex-math">= a^2 - 2ab + b^2</span>
 <span class="org-font-latex-math">  </span><span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">align*</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">subequations</span>}
 
 <span class="org-font-latex-sedate"><span class="org-keyword">\begin</span></span>{<span class="org-function-name">equation</span>}
-<span class="org-font-latex-math">  a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^3</span></span><span class="org-font-latex-math"> - b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^3</span></span><span class="org-font-latex-math"> = (a - b)(a</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math"> + ab + b</span><span class="org-font-latex-math"><span class="org-font-latex-script-char">^2</span></span><span class="org-font-latex-math">)</span>
+<span class="org-font-latex-math">  a^3 - b^3 = (a - b)(a^2 + ab + b^2)</span>
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">equation</span>}
 <span class="org-font-latex-sedate"><span class="org-keyword">\end</span></span>{<span class="org-function-name">document</span>}
 </pre>

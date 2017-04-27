@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-04-26 Wed 14:28 -->
+<!-- 2017-04-27 Thu 06:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orientation correlations among rice grains, part 3: intermezzo &#x2013; Binning images</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
@@ -33,19 +34,19 @@
 <div id="content">
 <h1 class="title">Orientation correlations among rice grains, part 3: intermezzo &#x2013; Binning images</h1>
 <p>
-The full reconstructed image resulting from the tomography experiment described in the <a href="./20150310-Orientation_correlations_among_rice_grains-02.html">second</a> instalment of this series is a 1747×1751×688 stack. The voxel size is about 0.030 mm. This is far too much for the purpose of the present study, since all we are interested in is the determination of the location (coordinates of the centroid) and orientation (principal axes of inertia) of the rice grains. In order to reduce the computation time, the images will first be <i>binned</i>, that is each set of (say) 4×4×4 voxels will be replaced with a unique voxel, with average gray value (see Fig. <a href="#org72fc970">1</a> below for an illustration). 3D binning would usually require three uggly nested loops. There is, however, a much more pythonic way. This is the topic of the present post.
+The full reconstructed image resulting from the tomography experiment described in the <a href="./20150310-Orientation_correlations_among_rice_grains-02.html">second</a> instalment of this series is a 1747×1751×688 stack. The voxel size is about 0.030 mm. This is far too much for the purpose of the present study, since all we are interested in is the determination of the location (coordinates of the centroid) and orientation (principal axes of inertia) of the rice grains. In order to reduce the computation time, the images will first be <i>binned</i>, that is each set of (say) 4×4×4 voxels will be replaced with a unique voxel, with average gray value (see Fig. <a href="#orgc159c85">1</a> below for an illustration). 3D binning would usually require three uggly nested loops. There is, however, a much more pythonic way. This is the topic of the present post.
 </p>
 
 
-<div id="org72fc970" class="figure">
+<div id="orgc159c85" class="figure">
 <p><img src="./20150330-Orientation_correlations_among_rice_grains-03/original_vs_binned.png" alt="original_vs_binned.png" width="90%">
 </p>
 <p><span class="figure-number">Figure 1: </span>The original (left) and binned (right) images. Each pixel in the right image is the average of 4<sup>3</sup>&thinsp;=&thinsp;64 voxels. As a result, the binned image is far less noisy than the original one (at the cost of lesser resolution).</p>
 </div>
 
-<div id="outline-container-org20e108a" class="outline-2">
-<h2 id="org20e108a">Zen of NumPy</h2>
-<div class="outline-text-2" id="text-org20e108a">
+<div id="outline-container-org4a7202d" class="outline-2">
+<h2 id="org4a7202d">Zen of NumPy</h2>
+<div class="outline-text-2" id="text-org4a7202d">
 <p>
 You probably have all heard of Tim Peters' <i>Zen of Python</i>, which you can display in the Python console through the command <code>import this</code>. A few years ago, <a href="https://plus.google.com/111231464998965388525/about">Travis Oliphant</a>, who is the author of NumPy (but also CEO of <a href="http://www.continuum.io/">Continuum Analytics</a>, which provides <a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>), wrote a post called <i><a href="http://technicaldiscovery.blogspot.fr/2010/11/zen-of-numpy.html">Zen of NumPy</a></i>, in which he came up with the following points
 </p>
@@ -67,9 +68,9 @@ We will be particularly interested in the last point: "think in higher dimension
 </div>
 </div>
 
-<div id="outline-container-org1c629dd" class="outline-2">
-<h2 id="org1c629dd">Binning a 2D array: using loops</h2>
-<div class="outline-text-2" id="text-org1c629dd">
+<div id="outline-container-org4d2190c" class="outline-2">
+<h2 id="org4d2190c">Binning a 2D array: using loops</h2>
+<div class="outline-text-2" id="text-org4d2190c">
 <p>
 We eventually want to perform binning on a 3D array (a stack of 2D slices). But, for the sake of illustration, the method will be demonstrated on a 2D array. We must first generate the data.
 </p>
@@ -127,9 +128,9 @@ This is a bit tedious, isn't it. Besides, it is appallingly slow! In order to in
 </div>
 </div>
 
-<div id="outline-container-org2c52c02" class="outline-2">
-<h2 id="org2c52c02">Towards thinking in higher dimensions</h2>
-<div class="outline-text-2" id="text-org2c52c02">
+<div id="outline-container-orgc73f3d8" class="outline-2">
+<h2 id="orgc73f3d8">Towards thinking in higher dimensions</h2>
+<div class="outline-text-2" id="text-orgc73f3d8">
 <p>
 Instead of looping over all cells of the original array, we could loop over the cells of the binned array. We then loop over all cells of the original array which contribute to the current cell of the binned array.
 </p>
@@ -169,11 +170,11 @@ We can check that both methods lead to the same result
 </pre>
 
 <p>
-OK, that's fine. But this solution is even worse than the previous one, since we are now left with <i>four</i> nested loops! However, the above code snippet suggests that we could consider <code>a2</code> as a four-dimensional array, where all cells are grouped in 4×4 <i>macro-cells</i>, as shown in Fig <a href="#org4dcb397">2</a>.
+OK, that's fine. But this solution is even worse than the previous one, since we are now left with <i>four</i> nested loops! However, the above code snippet suggests that we could consider <code>a2</code> as a four-dimensional array, where all cells are grouped in 4×4 <i>macro-cells</i>, as shown in Fig <a href="#org59d421c">2</a>.
 </p>
 
 
-<div id="org4dcb397" class="figure">
+<div id="org59d421c" class="figure">
 <p><object type="image/svg+xml" data="./20150330-Orientation_correlations_among_rice_grains-03/binning.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
@@ -202,9 +203,9 @@ In the next section, we will show that creation of <code>a4</code> with NumPy is
 </div>
 </div>
 
-<div id="outline-container-org7a5c6c3" class="outline-2">
-<h2 id="org7a5c6c3">Stride tricks</h2>
-<div class="outline-text-2" id="text-org7a5c6c3">
+<div id="outline-container-orgb56d0b7" class="outline-2">
+<h2 id="orgb56d0b7">Stride tricks</h2>
+<div class="outline-text-2" id="text-orgb56d0b7">
 <p>
 The present approach works only for strided arrays. In the above example, the data of array <code>a2</code> is actually stored in a 1D array (let's call it <code>data</code>), and the <a href="http://en.wikipedia.org/wiki/Offset_(computer_science)">offset</a> of element <code>(i0, i1)</code> is given by <code>s0*i0 + s1*i1</code>, where <code>(s0, s1)</code> are the strides (as returned by <code>a2.strides</code>) of the n-dimensional array. In other words, we have for all <code>i0</code> and <code>i1</code>
 </p>
@@ -273,9 +274,9 @@ Which shows that the above approach is correct. Thinking in higher dimensions al
 </div>
 </div>
 
-<div id="outline-container-org74482ef" class="outline-2">
-<h2 id="org74482ef">Putting it all together</h2>
-<div class="outline-text-2" id="text-org74482ef">
+<div id="outline-container-orgf92710e" class="outline-2">
+<h2 id="orgf92710e">Putting it all together</h2>
+<div class="outline-text-2" id="text-orgf92710e">
 <p>
 The script which allowed the binning of the whole 3D image is presented below. Is is slightly more complex than the previous example, because the 3D image is actually stored as a series of 2D images (in separate files). Image files must therefore be loaded 4 at a time and summed. The resulting 2D array is then binned. Also, the images are converted to 8 bits, and the histogram is adjusted accordingly.
 </p>
@@ -341,9 +342,9 @@ The script which allowed the binning of the whole 3D image is presented below. I
 </div>
 </div>
 
-<div id="outline-container-orgf148f70" class="outline-2">
-<h2 id="orgf148f70">Conclusion</h2>
-<div class="outline-text-2" id="text-orgf148f70">
+<div id="outline-container-orgd7613bc" class="outline-2">
+<h2 id="orgd7613bc">Conclusion</h2>
+<div class="outline-text-2" id="text-orgd7613bc">
 <p>
 In this post, we took a slight detour on our way towards segmentation and analysis of our 3D images. Still, I hope you enjoyed this post and found it useful. In the <a href="./20150529-Orientation_correlations_among_rice_grains-04.html">next instalment</a>, we will be back on track, as I will discuss the segmentation of the cylindrical sample container.
 </p>
