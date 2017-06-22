@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2017-06-19 Mon 11:48 -->
+<!-- 2017-06-22 Thu 05:12 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orientation correlations among rice grains, part 7: analysis of the shape of the grains</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
@@ -99,7 +98,7 @@ Stress: '\\stensii{\\Sigma}',
 });
 </script>
 <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -226,13 +225,13 @@ plt.style.use(<span class="org-string">'../include/zenburn-light.mplstyle'</span
 </pre>
 </div>
 
-<div id="outline-container-org74e5e0d" class="outline-2">
-<h2 id="morphological_description"><a id="org74e5e0d"></a>Morphological description of the grains</h2>
+<div id="outline-container-org1ef9f2b" class="outline-2">
+<h2 id="morphological_description"><a id="org1ef9f2b"></a>Morphological description of the grains</h2>
 <div class="outline-text-2" id="text-morphological_description">
 </div>
 
-<div id="outline-container-org75098f6" class="outline-3">
-<h3 id="direct_computation"><a id="org75098f6"></a>Direct computation of the morphological parameters of grain 42</h3>
+<div id="outline-container-orgd797ef7" class="outline-3">
+<h3 id="direct_computation"><a id="orgd797ef7"></a>Direct computation of the morphological parameters of grain 42</h3>
 <div class="outline-text-3" id="text-direct_computation">
 <p>
 The direct (naive) approach presented in this section will serve as a reference for a <a href="#using_sum">better approach</a> presented in the next section. It will be illustrated on one grain only (namely grain <a href="https://en.wikipedia.org/wiki/42_%28number%29#The_Hitchhiker.27s_Guide_to_the_Galaxy">42</a>), which we first locate. The remainder of the analysis is then restricted to a ROI surrounding the selected grain.
@@ -266,7 +265,6 @@ The volume (in voxels) of the grain is the sum of the above array
 
 <pre class="example">
 Volume of grain 42 = 7186 vox^3.
-
 </pre>
 
 <p>
@@ -290,7 +288,6 @@ The center of mass of the grain is the sum of these coordinates divided by the t
 
 <pre class="example">
 Center of mass of grain 42 = [   4.96688004  191.40801559  103.66824381] vox
-
 </pre>
 
 <p>
@@ -335,7 +332,6 @@ Moments of inertia of grain 42 (vox^5)
 [[  73912.1174506   -47088.89229056  -71887.95797384]
  [ -47088.89229056  434923.69830225  180875.70915669]
  [ -71887.95797384  180875.70915669  893659.09323685]]
-
 </pre>
 
 <p>
@@ -344,8 +340,8 @@ This is a bit tedious, isn't it? Besides, we should normally loop over the grain
 </div>
 </div>
 
-<div id="outline-container-org2d0b673" class="outline-3">
-<h3 id="using_sum"><a id="org2d0b673"></a>Using the <code>scipy.ndimage.sum</code> function</h3>
+<div id="outline-container-orga64bdac" class="outline-3">
+<h3 id="using_sum"><a id="orga64bdac"></a>Using the <code>scipy.ndimage.sum</code> function</h3>
 <div class="outline-text-3" id="text-using_sum">
 <p>
 This function will allow us to carry out the analysis over all grains simultaneously. We start with the volume, which is seen as
@@ -380,7 +376,6 @@ And we can check that the value we found for grain 42 is correct
 Volume of grain 42
     expected   = 7186
     actual     = 7186.0
-
 </pre>
 
 <p>
@@ -399,7 +394,6 @@ For the center of mass, we will use the <a href="http://docs.scipy.org/doc/scipy
 Center of mass of grain 42
     expected   = [   4.96688004  191.40801559  103.66824381]
     actual     = [   4.96688004  191.40801559  103.66824381]
-
 </pre>
 
 <p>
@@ -415,7 +409,7 @@ where the last identity is known as the <a href="https://en.wikipedia.org/wiki/P
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ipython" id="orgf8583f3"><span class="org-variable-name">coords</span> = np.mgrid[[<span class="org-builtin">slice</span>(n) <span class="org-keyword">for</span> n <span class="org-keyword">in</span> labels.shape]]
+<pre class="src src-ipython" id="org197d115"><span class="org-variable-name">coords</span> = np.mgrid[[<span class="org-builtin">slice</span>(n) <span class="org-keyword">for</span> n <span class="org-keyword">in</span> labels.shape]]
 <span class="org-variable-name">moments2</span> = np.empty((indices.size, 3, 3), dtype=np.float64)
 
 <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-builtin">range</span>(3):
@@ -453,7 +447,6 @@ Second moments of grain 42
 [[  73912.1174506   -47088.89229057  -71887.95797384]
  [ -47088.89229057  434923.69830227  180875.70915669]
  [ -71887.95797384  180875.70915669  893659.09323685]]
-
 </pre>
 
 <p>
@@ -477,7 +470,6 @@ It turns out that some of the eigenvalues that are found are negative (which is 
 
 <pre class="example">
 (array([  13, 1959], dtype=int64), array([2, 2], dtype=int64))
-
 </pre>
 
 <p>
@@ -491,7 +483,6 @@ However, these eigenvalues are very small
 
 <pre class="example">
 [ -4.88083585e-22  -1.02671800e-22]
-
 </pre>
 
 <p>
@@ -539,12 +530,12 @@ We can now proceed with the analysis of the results. This will be done more thor
 </div>
 </div>
 
-<div id="outline-container-orgd199cb1" class="outline-2">
-<h2 id="orgd199cb1">Analysis of the results</h2>
-<div class="outline-text-2" id="text-orgd199cb1">
-</div><div id="outline-container-org164d920" class="outline-3">
-<h3 id="org164d920">Volume of grains</h3>
-<div class="outline-text-3" id="text-org164d920">
+<div id="outline-container-orgd0ceb33" class="outline-2">
+<h2 id="orgd0ceb33">Analysis of the results</h2>
+<div class="outline-text-2" id="text-orgd0ceb33">
+</div><div id="outline-container-org52352eb" class="outline-3">
+<h3 id="org52352eb">Volume of grains</h3>
+<div class="outline-text-3" id="text-org52352eb">
 <div class="org-src-container">
 <pre class="src src-ipython"><span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> = plt.subplots()
 ax.set_xlabel(u<span class="org-string">'V (vox&#179;)'</span>)
@@ -575,9 +566,9 @@ My guess is that it is in fact a little bit of both. One possible remedy would b
 </div>
 </div>
 
-<div id="outline-container-org9dee069" class="outline-3">
-<h3 id="org9dee069">Size of the grains</h3>
-<div class="outline-text-3" id="text-org9dee069">
+<div id="outline-container-org94b1f73" class="outline-3">
+<h3 id="org94b1f73">Size of the grains</h3>
+<div class="outline-text-3" id="text-org94b1f73">
 <p>
 In this section we visualize the radii of the equivalent ellipsoids
 </p>
@@ -615,9 +606,9 @@ The length of most grains is about 2×27=54 pixels (about 6.5 mm). Also, the gra
 </div>
 </div>
 
-<div id="outline-container-org868678f" class="outline-3">
-<h3 id="org868678f">Orientation of grains</h3>
-<div class="outline-text-3" id="text-org868678f">
+<div id="outline-container-orgc2b15a6" class="outline-3">
+<h3 id="orgc2b15a6">Orientation of grains</h3>
+<div class="outline-text-3" id="text-orgc2b15a6">
 <p>
 This will be the topic of the next instalment of this series. We will only check for possible anisotropy by analysing the following second-order orientation tensor: \(\langle\vec n\otimes\vec n\rangle\), where angle brackets stand for ensemble average. It can readily be verified that for isotropic distributions, this tensor is diagonal
 </p>
@@ -647,7 +638,6 @@ Any deviation from this diagonal tensor indicates anisotropy (the converse is <i
 [[ 0.27186448  0.02470892 -0.02490964]
  [ 0.02470892  0.34850804 -0.00929047]
  [-0.02490964 -0.00929047  0.37962748]]
-
 </pre>
 
 <p>
@@ -657,9 +647,9 @@ Which shows that the distribution of grains is <i>not</i> isotropic. Analysis of
 </div>
 </div>
 
-<div id="outline-container-org4c182dd" class="outline-2">
-<h2 id="org4c182dd">Conclusion</h2>
-<div class="outline-text-2" id="text-org4c182dd">
+<div id="outline-container-org2649631" class="outline-2">
+<h2 id="org2649631">Conclusion</h2>
+<div class="outline-text-2" id="text-org2649631">
 <p>
 In this post, we have analysed the orientation of each grain. The orientation was defined as the orientation of the major axis of the equivalent ellipsoid. We are now ready to analyse orientation correlations among rice grains, which will be the topic of the <a href="./20160627-Orientation_correlations_among_rice_grains-08.html">next instalment</a>.
 </p>
