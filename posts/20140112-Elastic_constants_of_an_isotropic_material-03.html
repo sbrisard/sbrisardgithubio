@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-02-17 Sat 06:35 -->
+<!-- 2018-02-21 Wed 08:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elastic constants of an isotropic material, part 3: putting it all together</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
@@ -107,7 +108,7 @@ Stress: '\\stensii{\\Sigma}',
 <span class="sitename"><a href="../index.html" title="">Sébastien Brisard's blog</a></span>
 <ul>
 <li><a href="../index.html" title="Home"><span class="fa fa-home"></span></a></li>
-<li><a href="../pages/about.html" title="About me"><span class="fa fa-user"></span></a></li>
+<li><a href="https://cv.archives-ouvertes.fr/sbrisard" title="About me"><span class="fa fa-user"></span></a></li>
 <li><a href="../pages/references.html" title="References"><span class="fa fa-book"></span></a></li>
 <li><a href="archives.html" title="Archives"><span class="fa fa-archive"></span></a></li>
 <li><a href="https://github.com/sbrisard" title="GitHub"><span class="fa fa-github"></span></a></li>
@@ -150,17 +151,17 @@ T_{ijkl}&=T_{jikl}=T_{ijlk}&&\text{(minor symmetries)},\\
 T_{ijkl}&=T_{klij}&&\text{(major symmetries)}.
 \end{align*}
 
-<div id="outline-container-org817086b" class="outline-2">
-<h2 id="org817086b">Spherical and deviatoric projection tensors</h2>
-<div class="outline-text-2" id="text-org817086b">
+<div id="outline-container-org07780cf" class="outline-2">
+<h2 id="org07780cf">Spherical and deviatoric projection tensors</h2>
+<div class="outline-text-2" id="text-org07780cf">
 <p>
 In the present section, I am going to introduce the fourth-rank identity, spherical and deviatoric projection tensors.
 </p>
 </div>
 
-<div id="outline-container-orgfa5123e" class="outline-3">
-<h3 id="orgfa5123e">Fourth-rank identity tensor</h3>
-<div class="outline-text-3" id="text-orgfa5123e">
+<div id="outline-container-org4d75f4c" class="outline-3">
+<h3 id="org4d75f4c">Fourth-rank identity tensor</h3>
+<div class="outline-text-3" id="text-org4d75f4c">
 <p>
 The fourth-rank identity tensor \(\identiv\) maps any second-rank, symmetric tensor \(\tensii u\) to itself
 </p>
@@ -179,9 +180,9 @@ I_{ijkl}=\frac12\left(\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk}\right).
 </div>
 </div>
 
-<div id="outline-container-orgd044c43" class="outline-3">
-<h3 id="orgd044c43">Fourth-rank spherical projection tensor</h3>
-<div class="outline-text-3" id="text-orgd044c43">
+<div id="outline-container-org1d87775" class="outline-3">
+<h3 id="org1d87775">Fourth-rank spherical projection tensor</h3>
+<div class="outline-text-3" id="text-org1d87775">
 <p>
 The fourth-rank spherical projection tensor \(\sphprojiv\) extracts the spherical part of any symmetric, second-rank tensor \(\tensii u\)
 </p>
@@ -208,9 +209,9 @@ J_{ijkl} = \frac1d\delta_{ij}\delta_{kl}.
 </div>
 </div>
 
-<div id="outline-container-org69da71d" class="outline-3">
-<h3 id="org69da71d">Fourth-rank deviatoric projection tensor</h3>
-<div class="outline-text-3" id="text-org69da71d">
+<div id="outline-container-org57cefac" class="outline-3">
+<h3 id="org57cefac">Fourth-rank deviatoric projection tensor</h3>
+<div class="outline-text-3" id="text-org57cefac">
 <p>
 The fourth-rank deviatoric projection tensor \(\devprojiv\) extracts the deviatoric part of any symmetric, second-rank tensor \(\tensii u\)
 </p>
@@ -230,9 +231,9 @@ from which it results that
 </div>
 </div>
 
-<div id="outline-container-orgd64cfae" class="outline-2">
-<h2 id="orgd64cfae">Stiffness tensor</h2>
-<div class="outline-text-2" id="text-orgd64cfae">
+<div id="outline-container-org5ab3e97" class="outline-2">
+<h2 id="org5ab3e97">Stiffness tensor</h2>
+<div class="outline-text-2" id="text-org5ab3e97">
 <p>
 Going back the constitutive law of the linearly elastic, isotropic material given by Eq. \eqref{eq:1}, it is found that
 </p>
@@ -255,9 +256,9 @@ In isotropic elasticity, the stiffness tensor is a linear combination of the two
 </div>
 </div>
 
-<div id="outline-container-org1d6b88e" class="outline-2">
-<h2 id="org1d6b88e">Algebra of the \(\sphprojiv\) and \(\devprojiv\) tensors</h2>
-<div class="outline-text-2" id="text-org1d6b88e">
+<div id="outline-container-org494c96e" class="outline-2">
+<h2 id="org494c96e">Algebra of the \(\sphprojiv\) and \(\devprojiv\) tensors</h2>
+<div class="outline-text-2" id="text-org494c96e">
 <p>
 It can readily be verified that
 </p>
@@ -290,9 +291,9 @@ All these expressions will prove extremely useful in due time.
 </div>
 </div>
 
-<div id="outline-container-org1ea1899" class="outline-2">
-<h2 id="org1ea1899">Conclusion</h2>
-<div class="outline-text-2" id="text-org1ea1899">
+<div id="outline-container-org256df80" class="outline-2">
+<h2 id="org256df80">Conclusion</h2>
+<div class="outline-text-2" id="text-org256df80">
 <p>
 This is the end of this series on the elastic constants of isotropic materials. I have shown that (regardless of the dimension \(d\) of the physical space), such materials are characterized by two constants. The shear modulus \(\shearmod\), the Poisson ratio \(\nu\) and Young's modulus \(E\) do not depend on \(d\), while the plane strains expression of the bulk modulus \(\bulkmod\) differs from its 3D expression (see Eqs. \eqref{eq:2} and \eqref{eq:3}).
 </p>

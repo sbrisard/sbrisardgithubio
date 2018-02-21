@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-02-17 Sat 06:36 -->
+<!-- 2018-02-21 Wed 08:48 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Scrapy-ing the NIST X-ray Attenuation Databases</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
@@ -16,7 +17,7 @@
 <span class="sitename"><a href="../index.html" title="">Sébastien Brisard's blog</a></span>
 <ul>
 <li><a href="../index.html" title="Home"><span class="fa fa-home"></span></a></li>
-<li><a href="../pages/about.html" title="About me"><span class="fa fa-user"></span></a></li>
+<li><a href="https://cv.archives-ouvertes.fr/sbrisard" title="About me"><span class="fa fa-user"></span></a></li>
 <li><a href="../pages/references.html" title="References"><span class="fa fa-book"></span></a></li>
 <li><a href="archives.html" title="Archives"><span class="fa fa-archive"></span></a></li>
 <li><a href="https://github.com/sbrisard" title="GitHub"><span class="fa fa-github"></span></a></li>
@@ -48,9 +49,9 @@ In this post, I set out to extract this data as a HDF5 table. Of
 course, this looks like a job for <a href="https://scrapy.org/">Scrapy</a>!
 </p>
 
-<div id="outline-container-org234345d" class="outline-2">
-<h2 id="org234345d">First steps with Scrapy</h2>
-<div class="outline-text-2" id="text-org234345d">
+<div id="outline-container-org3ac0255" class="outline-2">
+<h2 id="org3ac0255">First steps with Scrapy</h2>
+<div class="outline-text-2" id="text-org3ac0255">
 <p>
  I am brand new to Scrapy, but found the excellent <a href="https://docs.scrapy.org/en/latest/">tutorial</a> extremely
 useful. If you use Miniconda from <a href="https://www.continuum.io/">Continuum Analytics</a>, then
@@ -68,9 +69,9 @@ which installs Scrapy in a new environment (called <code>scrapy</code>).
 </div>
 </div>
 
-<div id="outline-container-org59b6368" class="outline-2">
-<h2 id="org59b6368">Downloading the table for one single element</h2>
-<div class="outline-text-2" id="text-org59b6368">
+<div id="outline-container-orgea22acb" class="outline-2">
+<h2 id="orgea22acb">Downloading the table for one single element</h2>
+<div class="outline-text-2" id="text-orgea22acb">
 <p>
 In this section, we retrieve the data for the mass attenuation
 coefficient of one single element. We start with the data for
@@ -181,9 +182,9 @@ a float (see function <code>is_float</code> below).
 </div>
 </div>
 
-<div id="outline-container-org539e83c" class="outline-2">
-<h2 id="org539e83c">Downloading tables for all elements</h2>
-<div class="outline-text-2" id="text-org539e83c">
+<div id="outline-container-org4c716db" class="outline-2">
+<h2 id="org4c716db">Downloading tables for all elements</h2>
+<div class="outline-text-2" id="text-org4c716db">
 <p>
 All links follow the same pattern
 <code>http://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/zZZ.html</code>,
@@ -248,9 +249,9 @@ scrapy crawl table3 -o table3.json
 </div>
 </div>
 
-<div id="outline-container-org0f89331" class="outline-2">
-<h2 id="org0f89331">Retrieving the material constants of all elements</h2>
-<div class="outline-text-2" id="text-org0f89331">
+<div id="outline-container-org43c90b0" class="outline-2">
+<h2 id="org43c90b0">Retrieving the material constants of all elements</h2>
+<div class="outline-text-2" id="text-org43c90b0">
 <p>
 We will also need the data from <a href="http://physics.nist.gov/PhysRefData/XrayMassCoef/tab1.html">Table 1</a>. The spider is quite simple.
 </p>
@@ -297,9 +298,9 @@ It returns a <code>dict</code> which maps the element's atomic number Z to a
 </div>
 </div>
 
-<div id="outline-container-org54ed5df" class="outline-2">
-<h2 id="org54ed5df">Putting it all together in a HDF5 file</h2>
-<div class="outline-text-2" id="text-org54ed5df">
+<div id="outline-container-orgd13d413" class="outline-2">
+<h2 id="orgd13d413">Putting it all together in a HDF5 file</h2>
+<div class="outline-text-2" id="text-orgd13d413">
 <p>
 We are now ready to run our two spiders
 </p>
@@ -370,9 +371,9 @@ dataset
 </div>
 </div>
 
-<div id="outline-container-org846f678" class="outline-2">
-<h2 id="org846f678">X-ray mass attenuation coefficients of concrete</h2>
-<div class="outline-text-2" id="text-org846f678">
+<div id="outline-container-org1cfc1d7" class="outline-2">
+<h2 id="org1cfc1d7">X-ray mass attenuation coefficients of concrete</h2>
+<div class="outline-text-2" id="text-org1cfc1d7">
 <p>
 In order to check that everythin went fine, we will use the above
 table to compute the X-ray mass attenuation coefficients of a typical
@@ -591,9 +592,9 @@ cleverly). This validates our Scrapy procedure!
 </div>
 </div>
 
-<div id="outline-container-org7f92028" class="outline-2">
-<h2 id="org7f92028">Closing words</h2>
-<div class="outline-text-2" id="text-org7f92028">
+<div id="outline-container-org5b961cf" class="outline-2">
+<h2 id="org5b961cf">Closing words</h2>
+<div class="outline-text-2" id="text-org5b961cf">
 <p>
 In this blog, we learned how to use <a href="https://scrapy.org/">Scrapy</a> to retrieve some tabulated
 data that is not available as downloaded files. This is probably the
