@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-02-24 Sat 06:11 -->
+<!-- 2018-03-02 Fri 08:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>On the periodic-plus-smooth decomposition of an image, part 3: the energy as a quadratic form</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Sébastien Brisard">
 <link rel="stylesheet" href="../theme.css"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: {equationNumbers: {autoNumber: "AMS"}}});</script>
@@ -107,7 +108,7 @@ Stress: '\\stensii{\\Sigma}',
 <span class="sitename"><a href="../index.html" title="">Sébastien Brisard's blog</a></span>
 <ul>
 <li><a href="../index.html" title="Home"><span class="fa fa-home"></span></a></li>
-<li><a href="../pages/about.html" title="About me"><span class="fa fa-user"></span></a></li>
+<li><a href="https://cv.archives-ouvertes.fr/sbrisard" title="About me"><span class="fa fa-user"></span></a></li>
 <li><a href="../pages/references.html" title="References"><span class="fa fa-book"></span></a></li>
 <li><a href="archives.html" title="Archives"><span class="fa fa-archive"></span></a></li>
 <li><a href="https://github.com/sbrisard" title="GitHub"><span class="fa fa-github"></span></a></li>
@@ -141,7 +142,7 @@ This post is the third instalment of a series in seven parts:
 <li><a href="./20180212-On_the_periodic-plus-smooth_decomposition_of_an_image-01.html">Introduction</a></li>
 <li><a href="./20180219-On_the_periodic-plus-smooth_decomposition_of_an_image-02.html">Defining the decomposition</a></li>
 <li><a href="./20180226-On_the_periodic-plus-smooth_decomposition_of_an_image-03.html">The energy as a quadratic form</a></li>
-<li><a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-04.html">Implementing the linear operators</a></li>
+<li><a href="./20180305-On_the_periodic-plus-smooth_decomposition_of_an_image-04.html">Implementing the linear operators</a></li>
 <li><a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-05.html">Minimizing the energy, the clumsy way</a></li>
 <li><a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-06.html">Minimizing the energy, the clever way</a></li>
 <li><a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">Improved implementation of Moisan&rsquo;s algorithm</a></li>
@@ -213,8 +214,8 @@ The closed-form expression of \(Q_1\) is derived in the <a href="#Q1">first part
 post. Then, operator \(Q\) is derived in the <a href="#Q">second part</a> of this post.
 </p>
 
-<div id="outline-container-org397b6d3" class="outline-2">
-<h2 id="Q1"><a id="org397b6d3"></a>Derivation of the \(Q_1\) operator</h2>
+<div id="outline-container-org26b936e" class="outline-2">
+<h2 id="Q1"><a id="org26b936e"></a>Derivation of the \(Q_1\) operator</h2>
 <div class="outline-text-2" id="text-Q1">
 <p>
 The contribution to the total energy of the periodic component \(p\) is defined
@@ -295,8 +296,8 @@ Gathering the above results and introducing the symmetric operator
 </div>
 </div>
 
-<div id="outline-container-org7686cbf" class="outline-2">
-<h2 id="Q"><a id="org7686cbf"></a>Derivation of the \(Q\) operator</h2>
+<div id="outline-container-orgf5e84e1" class="outline-2">
+<h2 id="Q"><a id="orgf5e84e1"></a>Derivation of the \(Q\) operator</h2>
 <div class="outline-text-2" id="text-Q">
 <p>
 The contribution to the total energy of the smooth component \(s\) is defined by
@@ -428,9 +429,9 @@ Gathering the above results and introducing the symmetric, positive operator
 </div>
 </div>
 
-<div id="outline-container-org24969d9" class="outline-2">
-<h2 id="org24969d9">Conclusion</h2>
-<div class="outline-text-2" id="text-org24969d9">
+<div id="outline-container-org27db560" class="outline-2">
+<h2 id="org27db560">Conclusion</h2>
+<div class="outline-text-2" id="text-org27db560">
 <p>
 In this post, we have defined two linear operators, namely \(Q_1\) and \(Q\), that
 operate on the space of \(m\times n\) images, and such that
@@ -444,7 +445,7 @@ F(v, u)=\langle v, Q\cdot v\rangle-2\langle v, Q_1\cdot u\rangle
 <p>
 where the minimizer of \(F\) with respect to its first argument \(v\) is the smooth
 component \(s\) of \(u\) (the periodic component \(p\) is then obtained from
-\(p=u-s\)). In the <a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-04.html">next instalment</a> of this series, we will proceed to implement
+\(p=u-s\)). In the <a href="./20180305-On_the_periodic-plus-smooth_decomposition_of_an_image-04.html">next instalment</a> of this series, we will proceed to implement
 \(Q_1\) and \(Q\) in Python. To do so, we will adopt a <a href="https://en.wikipedia.org/wiki/Matrix-free_methods">matrix-free</a> approach.
 </p>
 </div>
