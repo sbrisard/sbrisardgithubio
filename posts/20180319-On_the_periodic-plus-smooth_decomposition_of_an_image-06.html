@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2018-03-16 Fri 08:30 -->
+<!-- 2018-03-23 Fri 08:15 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>On the periodic-plus-smooth decomposition of an image, part 6: minimizing the energy, the clever way</title>
@@ -141,7 +141,7 @@ post, which is the sixth in a series in seven parts:
 <li><a href="./20180305-On_the_periodic-plus-smooth_decomposition_of_an_image-04.html">Implementing the linear operators</a></li>
 <li><a href="./20180312-On_the_periodic-plus-smooth_decomposition_of_an_image-05.html">Minimizing the energy, the clumsy way</a></li>
 <li><a href="./20180319-On_the_periodic-plus-smooth_decomposition_of_an_image-06.html">Minimizing the energy, the clever way</a></li>
-<li><a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">Improved implementation of Moisan&rsquo;s algorithm</a></li>
+<li><a href="./20180326-On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">Improved implementation of Moisan&rsquo;s algorithm</a></li>
 </ol>
 
 <p>
@@ -172,7 +172,7 @@ u_{ij}=\frac1{mn}\sum_{\alpha=0}^{m-1}\sum_{\beta=0}^{n-1}\hat u_{\alpha\beta}
 The remainder of this post is organized as follows. We will first introduce
 <a href="#algorithm">Moisan&rsquo;s algorithm</a> (<a href="https://doi.org/10.1007/s10851-010-0227-1">2011</a>). Then a <a href="#implementation">first implementation</a> of this algorithm will
 be proposed and <a href="#testing">tested</a>. Improved implementations will be discussed in the
-<a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">next instalment</a> of this series.
+<a href="./20180326-On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">next instalment</a> of this series.
 </p>
 
 <div id="outline-container-org3015150" class="outline-2">
@@ -490,7 +490,7 @@ periodic-plus-smooth decomposition!
 In the present post, we have implemented Moisans&rsquo;s algorithm (<a href="https://doi.org/10.1007/s10851-010-0227-1">2011</a>) for
 computing the periodic-plus-smooth decomposition of an image. This algorithm is
 much faster than our <a href="./20180312-On_the_periodic-plus-smooth_decomposition_of_an_image-05.html">previous</a> implementation, relying on the conjugate gradient
-method. We will show in the <a href="./On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">next instalment</a> of this series that we can do
+method. We will show in the <a href="./20180326-On_the_periodic-plus-smooth_decomposition_of_an_image-07.html">next instalment</a> of this series that we can do
 slightly better, though.
 </p>
 </div>
